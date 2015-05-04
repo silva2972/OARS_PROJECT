@@ -70,6 +70,8 @@ namespace TEAM5OIES.Models
         [DisplayName("Confirm password")]
         public string ConfirmPassword { get; set; }
 
+        public Guid Institution { get; set; }
+
         public Surgeon Surgeon { get; set; }
     }
     #endregion

@@ -1,66 +1,68 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Visualize/Dashboard.Master" Inherits="System.Web.Mvc.ViewPage<IEnumerable<TEAM5OIES.Models.Patient>>" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Views/Visualize/Dashboard.Master"
+    Inherits="System.Web.Mvc.ViewPage<IEnumerable<TEAM5OIES.Models.Patient>>" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="TitleContent" runat="server">
-	Index
+    Index
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h2>Index</h2>
-
-    <table>
-        <tr>
-            <th></th>
-            <th>
+    <h2 style="text-align: center">
+        Patients</h2>
+    <table style="width: 1000px">
+        <div>
+            <th style="text-align: center; width: 260px">
                 patientID
             </th>
-            <th>
+        </div>
+        <div>
+            <th style="text-align: center; width: 140px">
                 originalID
             </th>
-            <th>
+        </div>
+        <div>
+            <th style="text-align: center; width: 70px">
                 sex
             </th>
-            <th>
+        </div>
+        <div>
+            <th style="text-align: center; width: 70px">
                 age
             </th>
-            <th>
+        </div>
+        <div>
+            <th style="text-align: center; width: 140px">
                 entryDate
             </th>
-            <th>
+        </div>
+        <div>
+            <th style="text-align: center; width: 190px">
                 dateOfSurgery
             </th>
-            <th></th>
-        </tr>
-
-    <% foreach (var item in Model) { %>
-    
+        </div>
+        <% foreach (var item in Model)
+           { %>
         <tr>
-            <td>
-                <%: Html.ActionLink("Edit", "Edit", new { id=item.patientID }) %>
-            </td>
-            <td>
+            <td style="width: 260px">
                 <%: item.patientID %>
             </td>
-            <td>
+            <td style="text-align: center; width: 140px">
                 <%: item.originalID %>
             </td>
-            <td>
+            <td style="text-align: center; width: 70px">
                 <%: item.sex %>
             </td>
-            <td>
+            <td style="text-align: center; width: 70px">
                 <%: item.age %>
             </td>
-            <td>
+            <td style="text-align: center; width: 140px">
                 <%: String.Format("{0:g}", item.entryDate) %>
             </td>
-            <td>
+            <td style="text-align: center; width: 190px">
                 <%: String.Format("{0:g}", item.dateOfSurgery) %>
             </td>
+            <td style="text-align: left">
+                <%: Html.ActionLink("Edit", "Edit") %>
+            </td>
         </tr>
-    
-    <% } %>
-
+        <% } %>
     </table>
-
 </asp:Content>
-

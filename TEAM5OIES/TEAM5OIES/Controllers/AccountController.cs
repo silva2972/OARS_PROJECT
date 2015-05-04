@@ -78,7 +78,7 @@ namespace TEAM5OIES.Controllers
         // **************************************
         // URL: /Account/Register
         // **************************************
-        team5oiesEntities db = new team5oiesEntities();
+        Entities db = new Entities();
         public ActionResult Register()
         {
             ViewData["PasswordLength"] = MembershipService.MinPasswordLength;
@@ -97,13 +97,13 @@ namespace TEAM5OIES.Controllers
                     firstName = "Surgeon",
                     lastName = "McSurgeonson",
                     userName = model.UserName,
-                    surgeonID = "TEMPORARY ID"
+                    institutionID = model.Institution
                 };
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-                model.Surgeon.surgeonID = Membership.GetUser(model.UserName).ProviderUserKey.ToString();
+                model.Surgeon.surgeonID = new Guid(Membership.GetUser(model.UserName).ProviderUserKey.ToString());
                 if (Request["roles"].Equals("Surgeon"))
                 {
                     db.AddToSurgeons(model.Surgeon);
@@ -113,7 +113,7 @@ namespace TEAM5OIES.Controllers
                 {
 
                     FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Visualize");
                 }
                 else
                 {

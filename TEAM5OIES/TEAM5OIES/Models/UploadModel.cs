@@ -14,9 +14,9 @@ namespace TEAM5OIES.Models
          public string unilateralDiameter { get; set; } 
          public string contralateralLength { get; set; } 
          public string contralateralDiameter { get; set; } 
-         public string entryPoint { get; set; } 
- 
- 
+         public string entryPoint { get; set; }
+         public DateTime DateOfSurgery { get; set; }
+         public Guid BrandId { get; set; }
      } 
  } 
 

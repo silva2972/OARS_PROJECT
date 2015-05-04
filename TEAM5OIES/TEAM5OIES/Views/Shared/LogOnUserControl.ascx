@@ -3,7 +3,7 @@
     if (Request.IsAuthenticated) {
 %>
         <li class="navbar-text">Welcome <%: Page.User.Identity.Name %>!</li>
-        <li class="navbar-text"><%: Html.ActionLink("Log Off", "LogOff", "Account") %></li>
+        <li><%: Html.ActionLink("Log Off", "LogOff", "Account") %></li>
 <%
     }
     else {

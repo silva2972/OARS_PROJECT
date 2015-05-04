@@ -47,7 +47,7 @@
                         Institution</label>
                 </div>
                 <div class="editor-field">
-                    <%: Html.DropDownList("dropdown",(SelectList)ViewData["InstitutionList"],htmlAttributes: new {@id = "id_dropdown"}) %>
+                    <%: Html.DropDownList("Institution",(SelectList)ViewData["InstitutionList"],htmlAttributes: new {@id = "id_dropdown"}) %>
                 </div>
                 <div class="editor-label">
                     <%: Html.LabelFor(m => m.Password) %>

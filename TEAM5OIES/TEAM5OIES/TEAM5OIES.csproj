@@ -40,8 +40,9 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>packages\EntityFramework.6.0.0\lib\net40\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="EvilDICOM.Core">
-      <HintPath>..\..\..\..\Downloads\Evil-DICOM-master\Evil-DICOM-master\EvilDICOM.Core\EvilDICOM.Core\obj\Release\EvilDICOM.Core.dll</HintPath>
+    <Reference Include="EvilDICOM.Core, Version=1.0.5.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\EvilDICOM.1.0.5.6\lib\net40\EvilDICOM.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="gdcm-sharp, Version=2.4.0.0, Culture=neutral, PublicKeyToken=aa55076f0ca26f2f, processorArchitecture=MSIL">
       <HintPath>packages\gdcm-sharp.2.4.4-alpha\lib\net40\gdcm-sharp.dll</HintPath>
@@ -114,10 +115,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\team5oies.Designer.cs">
+    <Compile Include="Models\team5oiesModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>team5oies.edmx</DependentUpon>
+      <DependentUpon>team5oiesModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\UploadModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -141,6 +142,7 @@
     <Content Include="Views\Home\Contact.aspx" />
     <Content Include="Views\Patient\Edit.aspx" />
     <Content Include="Views\Patient\Index.aspx" />
+    <Content Include="Views\Patient\PatientSelection.aspx" />
     <Content Include="Views\Testimonial\Create.aspx" />
     <Content Include="Views\Testimonial\Index.aspx" />
     <Content Include="Views\Upload\Index.aspx" />
@@ -189,9 +191,9 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <EntityDeploy Include="Models\team5oies.edmx">
+    <EntityDeploy Include="Models\team5oiesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>team5oies.Designer.cs</LastGenOutput>
+      <LastGenOutput>team5oiesModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Scripts\jquery-2.1.3.min.map" />
     <Content Include="Views\Visualize\Dashboard.Master" />

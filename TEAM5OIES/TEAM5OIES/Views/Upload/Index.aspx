@@ -74,14 +74,14 @@
              <%: Html.Label("Date of Surgery")%> 
              </div> 
              <div class="editor-field"> 
-                 <%: Html.TextBox("Date of Surgery",null,new { @class = "form-control" })%> 
+                 <%: Html.TextBox("DateOfSurgery",null,new { @class = "form-control", @type = "date"})%> 
              </div>
               
              <div class="editor-label">
                     <label for="id_dropdown">Endograft Brand</label>
                 </div>
                 <div class="editor-field">
-                    <%: Html.DropDownList("dropdown",(SelectList)ViewData["BrandList"],htmlAttributes: new {@id = "id_dropdown", @class="form-control"}) %>
+                    <%: Html.DropDownList("BrandId",(SelectList)ViewData["BrandList"],htmlAttributes: new {@id = "id_dropdown", @class="form-control"}) %>
                 </div>
       </fieldset>       
       <br />

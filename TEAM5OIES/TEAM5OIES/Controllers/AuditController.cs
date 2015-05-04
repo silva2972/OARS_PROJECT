@@ -9,7 +9,7 @@ namespace TEAM5OIES.Controllers
 {
     public class AuditController : Controller
     {
-        team5oiesEntities db = new team5oiesEntities();
+        Entities db = new Entities();
         //
         // GET: /Audit/
         [Authorize(Roles="Auditor")]

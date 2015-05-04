@@ -9,7 +9,7 @@ namespace TEAM5OIES.Controllers
 {
     public class TestimonialController : Controller
     {
-       team5oiesEntities db = new team5oiesEntities();
+        Entities db = new Entities();
 
         //
         // GET: /Testimonial/
@@ -69,6 +69,7 @@ namespace TEAM5OIES.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Include = "testimonialID,content,author,created_date")] Testimonial newTestimonial)
         {
+            newTestimonial.testimonialID = Guid.NewGuid();
             newTestimonial.testimonialDate = DateTime.Now;
             if (ModelState.IsValid)
             {

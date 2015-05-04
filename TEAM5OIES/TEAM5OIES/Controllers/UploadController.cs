@@ -24,7 +24,7 @@ namespace TEAM5OIES.Controllers
 {
     public class UploadController : Controller
     {
-        team5oiesEntities db = new team5oiesEntities();
+        Entities db = new Entities();
 
         [Authorize(Roles = "Surgeon")]
         public ActionResult Index()
@@ -34,10 +34,10 @@ namespace TEAM5OIES.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Index(HttpPostedFileBase uploadFile,UploadModel model)
+        public ActionResult Index(HttpPostedFileBase uploadFile, UploadModel model)
         {
             ViewData["BrandList"] = new SelectList(db.Brands, "brandID", "brandName");
-            if (uploadFile!= null)
+            if (uploadFile != null)
             {
 
                 if (uploadFile.ContentLength > 0)
@@ -58,11 +58,11 @@ namespace TEAM5OIES.Controllers
                 return View("Index");
             }
         }
-        
+
 
         /* Method Created by Johnathan Hornik *
         * Team5_7                             */
-        private void ProcessMetadata(string extractPath, int patientID, UploadModel model)
+        private void ProcessMetadata(string extractPath, Guid patientID, UploadModel model)
         {
             extractPath += @"\DICOM";
 
@@ -91,17 +91,20 @@ namespace TEAM5OIES.Controllers
             var originIdPatientActual = dicomFirst.FindFirst(originalIdPatient) as AbstractElement<string>;
             var patientSexActual = dicomFirst.FindFirst(sex) as AbstractElement<string>;
             var ageActual = dicomFirst.FindFirst(age) as AbstractElement<string>;
-            db.AddToPatients(new Patient()
+
+            var currentPatient = new Patient()
             {
                 originalID = originIdPatientActual.Data,
-                dateOfSurgery = System.DateTime.Today.AddDays(-1), //Nothing to see here
+                dateOfSurgery = model.DateOfSurgery,
                 entryDate = System.DateTime.Today,
                 sex = patientSexActual.Data,
                 age = Convert.ToInt32(ageActual.Data.Substring(0, 3)),
-                patientID = patientID.ToString()
-            });
+                patientID = patientID,
+                surgeonID = (Guid)Membership.GetUser().ProviderUserKey
+            };
+            db.AddToPatients(currentPatient);
             db.SaveChanges();
-            
+
             db.AddToEndografts(new Endograft()
             {
                 endograft_length = model.bodyLength,
@@ -110,61 +113,91 @@ namespace TEAM5OIES.Controllers
                 controlaterLegDiameter = model.contralateralDiameter,
                 unilateralLegDiameter = model.unilateralDiameter,
                 unilateralLegLength = model.unilateralLength,
-                endograftID = (patientID + 2).ToString(),
-                entry_Point = model.entryPoint
-
+                entry_Point = model.entryPoint,
+                brandID = model.BrandId,
+                endograftID = Guid.NewGuid()
             });
-                db.SaveChanges();
+            db.SaveChanges();
 
             List<Study> studies = new List<Study>();
             List<Series> series = new List<Series>();
-            int count = 0;
+
+            var count = 0;
             foreach (var f in files)
             {
+                count++;
                 var dicom = DICOMObject.Read(f);
                 var originIdStudyActual = dicom.FindFirst(originalIdStudy) as AbstractElement<string>;
                 var studyDescActual = dicom.FindFirst(descriptionStudy) as AbstractElement<string>;
                 var studyDate = dicom.FindFirst(date) as Date;
-                
-                studies.Add(new Study()
+                var studyId = Guid.NewGuid();
+                Study currentStudy;
+                if (!studies.Any(s => s.originalStudyID == originIdStudyActual.Data) &&
+                    !db.Studies.Any(s => s.originalStudyID == originIdStudyActual.Data))
                 {
-                    originalStudyID = originIdStudyActual.Data,
-                    studyDate = studyDate.Data.Value,
-                    studyDescription = studyDescActual.Data,
-                    studyID = patientID + originIdStudyActual.Data + count,
-                    CT = f
-                });
+                    currentStudy = new Study()
+                    {
+                        originalStudyID = originIdStudyActual.Data,
+                        studyDate = studyDate.Data.Value,
+                        studyDescription = studyDescActual.Data,
+                        CT = f,
+                        patientID = patientID,
+                        studyID = Guid.NewGuid()
+                    };
+                    db.AddToStudies(currentStudy);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    if (studies.Any(s => s.originalStudyID == originIdStudyActual.Data))
+                    {
+                        currentStudy = studies.First(s => s.originalStudyID == originIdStudyActual.Data);
+                    }
+                    else
+                    {
+                        currentStudy = db.Studies.First(s => s.originalStudyID == originIdStudyActual.Data);
+                    }
+                    
+                }
 
-                var originSeriesActual = dicom.FindFirst(originalIdSeries) as IntegerString;
+                var originSeriesActual = (dicom.FindFirst(originalIdSeries) as IntegerString).Data.ToString();
                 var seriesDescActual = dicom.FindFirst(descriptionSeries) as AbstractElement<string>;
-                series.Add(new Series()
+
+                if (!series.Any(s => s.originalSeriesID == originSeriesActual) &&
+                    !db.Series.Any(s => s.originalSeriesID == originSeriesActual))
                 {
-                    IlliacBif = "",
-                    originalSeriesID = originSeriesActual.Data.ToString(),
-                    ROIBegin = "",
-                    seriesDate = System.DateTime.Today,
-                    seriesDescription = seriesDescActual.Data,
-                    totalNumberOfSlices = 1,
-                    seriesID = patientID + "" + originSeriesActual.Data + count
+                    db.AddToSeries(new Series()
+                    {
+                        IlliacBif = "",
+                        originalSeriesID = originSeriesActual,
+                        ROIBegin = "",
+                        seriesDate = System.DateTime.Today,
+                        seriesDescription = seriesDescActual.Data,
+                        totalNumberOfSlices = 1,
+                        Study = currentStudy,
+                        seriesID = Guid.NewGuid()
+                    });
+                    db.SaveChanges();
+                }
+
+                var sliceThickness = dicom.FindFirst("00180050") as AbstractElement<string>;
+                db.AddToImages(new Image()
+                {
+                    imageFileName = f,
+                    imageOrder = count.ToString(),
+                    imageTitle = "Evar Image Title",
+                    seriesID = db.Series.First(s => s.originalSeriesID.Equals(originSeriesActual)).seriesID,
+                    sliceThickness = Convert.ToDouble(sliceThickness),
+                    imageID = Guid.NewGuid()
                 });
-                count++;
+                db.SaveChanges();
             }
-            foreach (var s in studies)
-            {
-                db.AddToStudies(s);
-            }
-            db.SaveChanges();
-            foreach (var s in series)
-            {
-                db.AddToSeries(s);
-            }
-            db.SaveChanges();
         }
 
         private void Unzip(HttpPostedFileBase uploadFile, UploadModel model)
         {
-            int patientId = new Random().Next(10000);
-            String extractPath = @"C:\\COSC4351_Spring2015\TEAM5OIES\" + patientId;
+            Guid patientId = Guid.NewGuid();
+            String extractPath = @"D:\COSC4351_Spring2015\TEAM5OIES\" + patientId;
             //TODO send success or failure email to logged in physician
 
             try

@@ -39,7 +39,7 @@
         Text = "Click to Anonymize and Zip" 
         Font-Size = "18pt" 
         Target = "_blank" 
-        NavigateUrl="http://www.dclunie.com/pixelmed/software/webstart/DicomCleaner.html" />
+        NavigateUrl="http://www.dclunie.com/pixelmed/software/webstart/DicomCleaner.jnlp" />
     <br />
     <br />
     <p> Due to HIPAA regulations, in order to upload your patient data, it must first be anonymized. 
