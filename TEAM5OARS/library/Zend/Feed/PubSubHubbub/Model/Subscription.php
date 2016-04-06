@@ -1,59 +1,78 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Feed_Pubsubhubbub
+ * @subpackage Entity
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id$
  */
 
-namespace Zend\Feed\PubSubHubbub\Model;
+/** @see Zend_Feed_Pubsubhubbub_Model_ModelAbstract */
+require_once 'Zend/Feed/Pubsubhubbub/Model/ModelAbstract.php';
 
-use DateInterval;
-use DateTime;
-use Zend\Feed\PubSubHubbub;
+/** @see Zend_Feed_Pubsubhubbub_Model_SubscriptionInterface */
+require_once 'Zend/Feed/Pubsubhubbub/Model/SubscriptionInterface.php';
 
-class Subscription extends AbstractModel implements SubscriptionPersistenceInterface
+/** @see Zend_Date */
+require_once 'Zend/Date.php';
+
+/**
+ * @category   Zend
+ * @package    Zend_Feed_Pubsubhubbub
+ * @subpackage Entity
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ */
+class Zend_Feed_Pubsubhubbub_Model_Subscription
+    extends Zend_Feed_Pubsubhubbub_Model_ModelAbstract
+    implements Zend_Feed_Pubsubhubbub_Model_SubscriptionInterface
 {
-    /**
-     * Common DateTime object to assist with unit testing
-     *
-     * @var DateTime
-     */
-    protected $now;
 
     /**
      * Save subscription to RDMBS
      *
-     * @param array $data
+     * @param  array $data
+     * @throws Zend_Db_Table_Exception
+     * @throws Zend_Feed_Pubsubhubbub_Exception
      * @return bool
-     * @throws PubSubHubbub\Exception\InvalidArgumentException
      */
     public function setSubscription(array $data)
     {
         if (!isset($data['id'])) {
-            throw new PubSubHubbub\Exception\InvalidArgumentException(
+            require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
+            throw new Zend_Feed_Pubsubhubbub_Exception(
                 'ID must be set before attempting a save'
             );
         }
-        $result = $this->db->select(array('id' => $data['id']));
-        if ($result && (0 < count($result))) {
+        $result = $this->_db->find($data['id']);
+        if (count($result)) {
             $data['created_time'] = $result->current()->created_time;
-            $now = $this->getNow();
-            if (array_key_exists('lease_seconds', $data)
-                && $data['lease_seconds']
-            ) {
-                $data['expiration_time'] = $now->add(new DateInterval('PT' . $data['lease_seconds'] . 'S'))
-                    ->format('Y-m-d H:i:s');
+            $now = new Zend_Date;
+            if (isset($data['lease_seconds'])) {
+                $data['expiration_time'] = $now->add($data['lease_seconds'], Zend_Date::SECOND)
+                ->get('yyyy-MM-dd HH:mm:ss');
             }
-            $this->db->update(
+            $this->_db->update(
                 $data,
-                array('id' => $data['id'])
+                $this->_db->getAdapter()->quoteInto('id = ?', $data['id'])
             );
             return false;
         }
 
-        $this->db->insert($data);
+        $this->_db->insert($data);
         return true;
     }
 
@@ -61,18 +80,20 @@ class Subscription extends AbstractModel implements SubscriptionPersistenceInter
      * Get subscription by ID/key
      *
      * @param  string $key
+     * @throws Zend_Db_Table_Exception
+     * @throws Zend_Feed_Pubsubhubbub_Exception
      * @return array
-     * @throws PubSubHubbub\Exception\InvalidArgumentException
      */
     public function getSubscription($key)
     {
         if (empty($key) || !is_string($key)) {
-            throw new PubSubHubbub\Exception\InvalidArgumentException('Invalid parameter "key"'
+            require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
+            throw new Zend_Feed_Pubsubhubbub_Exception('Invalid parameter "key"'
                 .' of "' . $key . '" must be a non-empty string');
         }
-        $result = $this->db->select(array('id' => $key));
+        $result = $this->_db->find($key);
         if (count($result)) {
-            return $result->current()->getArrayCopy();
+            return $result->current()->toArray();
         }
         return false;
     }
@@ -81,16 +102,18 @@ class Subscription extends AbstractModel implements SubscriptionPersistenceInter
      * Determine if a subscription matching the key exists
      *
      * @param  string $key
+     * @throws Zend_Db_Table_Exception
+     * @throws Zend_Feed_Pubsubhubbub_Exception
      * @return bool
-     * @throws PubSubHubbub\Exception\InvalidArgumentException
      */
     public function hasSubscription($key)
     {
         if (empty($key) || !is_string($key)) {
-            throw new PubSubHubbub\Exception\InvalidArgumentException('Invalid parameter "key"'
+            require_once 'Zend/Feed/Pubsubhubbub/Exception.php';
+            throw new Zend_Feed_Pubsubhubbub_Exception('Invalid parameter "key"'
                 .' of "' . $key . '" must be a non-empty string');
         }
-        $result = $this->db->select(array('id' => $key));
+        $result = $this->_db->find($key);
         if (count($result)) {
             return true;
         }
@@ -100,43 +123,19 @@ class Subscription extends AbstractModel implements SubscriptionPersistenceInter
     /**
      * Delete a subscription
      *
-     * @param string $key
+     * @param  string $key
      * @return bool
      */
     public function deleteSubscription($key)
     {
-        $result = $this->db->select(array('id' => $key));
+        $result = $this->_db->find($key);
         if (count($result)) {
-            $this->db->delete(
-                array('id' => $key)
+            $this->_db->delete(
+                $this->_db->getAdapter()->quoteInto('id = ?', $key)
             );
             return true;
         }
         return false;
     }
 
-    /**
-     * Get a new DateTime or the one injected for testing
-     *
-     * @return DateTime
-     */
-    public function getNow()
-    {
-        if (null === $this->now) {
-            return new DateTime();
-        }
-        return $this->now;
-    }
-
-    /**
-     * Set a DateTime instance for assisting with unit testing
-     *
-     * @param DateTime $now
-     * @return Subscription
-     */
-    public function setNow(DateTime $now)
-    {
-        $this->now = $now;
-        return $this;
-    }
 }
