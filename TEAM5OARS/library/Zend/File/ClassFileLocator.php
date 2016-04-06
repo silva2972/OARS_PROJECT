@@ -1,25 +1,33 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_File
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\File;
-
-use DirectoryIterator;
-use FilterIterator;
-use RecursiveDirectoryIterator;
-use RecursiveIterator;
-use RecursiveIteratorIterator;
-use SplFileInfo;
+require_once 'Zend/File/PhpClassFile.php';
 
 /**
- * Locate files containing PHP classes, interfaces, abstracts or traits
+ * Locate files containing PHP classes, interfaces, or abstracts
+ *
+ * @package    Zend_File
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    New BSD {@link http://framework.zend.com/license/new-bsd}
  */
-class ClassFileLocator extends FilterIterator
+class Zend_File_ClassFileLocator extends FilterIterator
 {
     /**
      * Create an instance of the locator iterator
@@ -28,26 +36,38 @@ class ClassFileLocator extends FilterIterator
      * instance.
      *
      * @param  string|DirectoryIterator $dirOrIterator
-     * @throws Exception\InvalidArgumentException
      */
     public function __construct($dirOrIterator = '.')
     {
         if (is_string($dirOrIterator)) {
             if (!is_dir($dirOrIterator)) {
-                throw new Exception\InvalidArgumentException('Expected a valid directory name');
+                throw new InvalidArgumentException('Expected a valid directory name');
             }
 
-            $dirOrIterator = new RecursiveDirectoryIterator($dirOrIterator, RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
-        } elseif (!$dirOrIterator instanceof DirectoryIterator) {
-            throw new Exception\InvalidArgumentException('Expected a DirectoryIterator');
+            $dirOrIterator = new RecursiveDirectoryIterator($dirOrIterator);
+        }
+        if (!$dirOrIterator instanceof DirectoryIterator) {
+            throw new InvalidArgumentException('Expected a DirectoryIterator');
         }
 
         if ($dirOrIterator instanceof RecursiveIterator) {
-            $dirOrIterator = new RecursiveIteratorIterator($dirOrIterator);
+            $iterator = new RecursiveIteratorIterator($dirOrIterator);
+        } else {
+            $iterator = $dirOrIterator;
         }
 
-        parent::__construct($dirOrIterator);
-        $this->setInfoClass('Zend\File\PhpClassFile');
+        parent::__construct($iterator);
+        $this->setInfoClass('Zend_File_PhpClassFile');
+
+        // Forward-compat with PHP 5.3
+        if (version_compare(PHP_VERSION, '5.3.0', '<')) {
+            if (!defined('T_NAMESPACE')) {
+                define('T_NAMESPACE', 'namespace');
+            }
+            if (!defined('T_NS_SEPARATOR')) {
+                define('T_NS_SEPARATOR', '\\');
+            }
+        }
     }
 
     /**
@@ -116,10 +136,6 @@ class ClassFileLocator extends FilterIterator
                     break;
                 case $t_trait:
                 case T_CLASS:
-                    // ignore T_CLASS after T_DOUBLE_COLON to allow PHP >=5.5 FQCN scalar resolution
-                    if ($i > 0 && is_array($tokens[$i-1]) && $tokens[$i-1][0] === T_DOUBLE_COLON) {
-                        break;
-                    }
                 case T_INTERFACE:
                     // Abstract class, class, interface or trait found
 
@@ -131,22 +147,20 @@ class ClassFileLocator extends FilterIterator
                         }
                         list($type, $content, $line) = $token;
                         if (T_STRING == $type) {
-                            // If a classname was found, set it in the object, and
-                            // return boolean true (found)
+                    // If a classname was found, set it in the object, and
+                    // return boolean true (found)
                             if (!isset($namespace) || null === $namespace) {
                                 if (isset($saveNamespace) && $saveNamespace) {
                                     $namespace = $savedNamespace;
                                 } else {
                                     $namespace = null;
-                                }
+                    }
+
                             }
                             $class = (null === $namespace) ? $content : $namespace . '\\' . $content;
                             $file->addClass($class);
-                            if ($namespace) {
-                                $file->addNamespace($namespace);
-                            }
                             $namespace = null;
-                            break;
+                    break;
                         }
                     }
                     break;

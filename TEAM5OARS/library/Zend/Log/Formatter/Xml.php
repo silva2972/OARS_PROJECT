@@ -1,69 +1,69 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Log
+ * @subpackage Formatter
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id$
  */
 
-namespace Zend\Log\Formatter;
+/** Zend_Log_Formatter_Abstract */
+require_once 'Zend/Log/Formatter/Abstract.php';
 
-use DateTime;
-use DOMDocument;
-use DOMElement;
-use Traversable;
-use Zend\Escaper\Escaper;
-use Zend\Stdlib\ArrayUtils;
-
-class Xml implements FormatterInterface
+/**
+ * @category   Zend
+ * @package    Zend_Log
+ * @subpackage Formatter
+ * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id$
+ */
+class Zend_Log_Formatter_Xml extends Zend_Log_Formatter_Abstract
 {
     /**
      * @var string Name of root element
      */
-    protected $rootElement;
+    protected $_rootElement;
 
     /**
      * @var array Relates XML elements to log data field keys.
      */
-    protected $elementMap;
+    protected $_elementMap;
 
     /**
      * @var string Encoding to use in XML
      */
-    protected $encoding;
-
-    /**
-     * @var Escaper instance
-     */
-    protected $escaper;
-
-    /**
-     * Format specifier for DateTime objects in event data (default: ISO 8601)
-     *
-     * @see http://php.net/manual/en/function.date.php
-     * @var string
-     */
-    protected $dateTimeFormat = self::DEFAULT_DATETIME_FORMAT;
+    protected $_encoding;
 
     /**
      * Class constructor
      * (the default encoding is UTF-8)
      *
-     * @param array|Traversable $options
-     * @return Xml
+     * @param array|Zend_Config $options
+     * @return void
      */
     public function __construct($options = array())
     {
-        if ($options instanceof Traversable) {
-            $options = ArrayUtils::iteratorToArray($options);
-        }
-
-        if (!is_array($options)) {
+        if ($options instanceof Zend_Config) {
+            $options = $options->toArray();
+        } elseif (!is_array($options)) {
             $args = func_get_args();
 
             $options = array(
-                'rootElement' => array_shift($args)
+            	'rootElement' => array_shift($args)
             );
 
             if (count($args)) {
@@ -72,10 +72,6 @@ class Xml implements FormatterInterface
 
             if (count($args)) {
                 $options['encoding'] = array_shift($args);
-            }
-
-            if (count($args)) {
-                $options['dateTimeFormat'] = array_shift($args);
             }
         }
 
@@ -87,16 +83,23 @@ class Xml implements FormatterInterface
             $options['encoding'] = 'UTF-8';
         }
 
-        $this->rootElement = $options['rootElement'];
+        $this->_rootElement = $options['rootElement'];
         $this->setEncoding($options['encoding']);
 
         if (array_key_exists('elementMap', $options)) {
-            $this->elementMap  = $options['elementMap'];
+            $this->_elementMap  = $options['elementMap'];
         }
+    }
 
-        if (array_key_exists('dateTimeFormat', $options)) {
-            $this->setDateTimeFormat($options['dateTimeFormat']);
-        }
+    /**
+	 * Factory for Zend_Log_Formatter_Xml classe
+	 *
+	 * @param array|Zend_Config $options
+	 * @return Zend_Log_Formatter_Xml
+     */
+    public static function factory($options)
+    {
+        return new self($options);
     }
 
     /**
@@ -106,166 +109,57 @@ class Xml implements FormatterInterface
      */
     public function getEncoding()
     {
-        return $this->encoding;
+        return $this->_encoding;
     }
 
     /**
      * Set encoding
      *
-     * @param string $value
-     * @return Xml
+     * @param  string $value
+     * @return Zend_Log_Formatter_Xml
      */
     public function setEncoding($value)
     {
-        $this->encoding = (string) $value;
+        $this->_encoding = (string) $value;
         return $this;
-    }
-
-    /**
-     * Set Escaper instance
-     *
-     * @param  Escaper $escaper
-     * @return Xml
-     */
-    public function setEscaper(Escaper $escaper)
-    {
-        $this->escaper = $escaper;
-        return $this;
-    }
-
-    /**
-     * Get Escaper instance
-     *
-     * Lazy-loads an instance with the current encoding if none registered.
-     *
-     * @return Escaper
-     */
-    public function getEscaper()
-    {
-        if (null === $this->escaper) {
-            $this->setEscaper(new Escaper($this->getEncoding()));
-        }
-        return $this->escaper;
     }
 
     /**
      * Formats data into a single line to be written by the writer.
      *
-     * @param array $event event data
-     * @return string formatted line to write to the log
+     * @param  array    $event    event data
+     * @return string             formatted line to write to the log
      */
     public function format($event)
     {
-        if (isset($event['timestamp']) && $event['timestamp'] instanceof DateTime) {
-            $event['timestamp'] = $event['timestamp']->format($this->getDateTimeFormat());
-        }
-
-        $dataToInsert = $event;
-
-        if (null !== $this->elementMap) {
+        if ($this->_elementMap === null) {
+            $dataToInsert = $event;
+        } else {
             $dataToInsert = array();
-
-            foreach ($this->elementMap as $elementName => $fieldKey) {
+            foreach ($this->_elementMap as $elementName => $fieldKey) {
                 $dataToInsert[$elementName] = $event[$fieldKey];
             }
         }
 
-        $enc     = $this->getEncoding();
-        $escaper = $this->getEscaper();
-        $dom     = new DOMDocument('1.0', $enc);
-        $elt     = $dom->appendChild(new DOMElement($this->rootElement));
+        $enc = $this->getEncoding();
+        $dom = new DOMDocument('1.0', $enc);
+        $elt = $dom->appendChild(new DOMElement($this->_rootElement));
 
         foreach ($dataToInsert as $key => $value) {
-            if (empty($value)
-                || is_scalar($value)
-                || ((is_array($value) || $value instanceof Traversable) && $key == "extra")
-                || (is_object($value) && method_exists($value, '__toString'))
+            if (empty($value) 
+                || is_scalar($value) 
+                || (is_object($value) && method_exists($value,'__toString'))
             ) {
-                if ($key == "message") {
-                    $value = $escaper->escapeHtml($value);
+                if($key == "message") {
+                    $value = htmlspecialchars($value, ENT_COMPAT, $enc);
                 }
-
-                if ($key == "extra" && empty($value)) {
-                    continue;
-                }
-
-                if ($key == "extra" && (is_array($value) || $value instanceof Traversable)) {
-                    $elt->appendChild($this->buildElementTree($dom, $dom->createElement('extra'), $value));
-
-                    continue;
-                }
-
-                $elt->appendChild(new DOMElement($key, (string) $value));
+                $elt->appendChild(new DOMElement($key, (string)$value));
             }
         }
 
-        return preg_replace('/<\?xml version="1.0"( encoding="[^\"]*")?\?>\n/u', '', $dom->saveXML()) . PHP_EOL;
-    }
+        $xml = $dom->saveXML();
+        $xml = preg_replace('/<\?xml version="1.0"( encoding="[^\"]*")?\?>\n/u', '', $xml);
 
-    /**
-     * Recursion function to create an xml tree structure out of array structure
-     * @param DomDocument $doc - DomDocument where the current nodes will be generated
-     * @param DomElement $rootElement - root element the tree will be attached to
-     * @param $mixedData array|Traversable - mixedData
-     * @return DomElement $domElement - DOM Element with appended child nodes
-     */
-    protected function buildElementTree(DOMDocument $doc, DOMElement $rootElement, $mixedData)
-    {
-        if (! (is_array($mixedData) || $mixedData instanceof Traversable)) {
-            return $rootElement;
-        }
-
-        foreach ($mixedData as $key => $value) {
-            // key is numeric and switch is not possible, numeric values are not valid node names
-            if ((empty($value) || is_numeric($value)) && is_numeric($key)) {
-                continue;
-            }
-
-            if ($value instanceof Traversable || is_array($value)) {
-                // current value is an array, start recursion
-                $rootElement->appendChild($this->buildElementTree($doc, $doc->createElement($key), $value));
-
-                continue;
-            }
-
-            if (is_object($value) && ! method_exists($value, '__toString')) {
-                // object does not support __toString() method, manually convert the value
-                $value = $this->getEscaper()->escapeHtml(
-                    '"Object" of type ' . get_class($value) . " does not support __toString() method"
-                );
-            }
-
-            if (is_numeric($key)) {
-                // xml does not allow numeric values, try to switch the value and the key
-                $key   = (string) $value;
-                $value = null;
-            }
-
-            try {
-                $rootElement->appendChild(new DOMElement($key, empty($value) ? null : (string) $value));
-            } catch (\DOMException $e) {
-                // the input name is not valid, go one.
-                continue;
-            }
-        }
-
-        return $rootElement;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getDateTimeFormat()
-    {
-        return $this->dateTimeFormat;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setDateTimeFormat($dateTimeFormat)
-    {
-        $this->dateTimeFormat = (string) $dateTimeFormat;
-        return $this;
+        return $xml . PHP_EOL;
     }
 }
