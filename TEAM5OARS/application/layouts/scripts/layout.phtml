@@ -1,0 +1,108 @@
+<?php
+
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+
+$this->headTitle()->setSeparator(' - ');
+
+$this->headTitle('TEAM5OARS');
+
+echo $this->doctype(); ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <a class="navbar-brand" href="index.phtml">TEAM5OARS</a>
+           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <ul class="nav navbar-nav">
+                   <li><a href="#">Home</a></li>
+                   <li><a href="#">About Us</a></li>
+                   <li><a href="#">Testimonials</a></li>
+                   <li><a href="#">Support</a></li>
+                   <li><a href="#">Contact Us</a></li>
+
+                   <li class="dropdown">
+                       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Manager) <b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                           <li><a href="#">Homepage</a></li>
+                           <li><a href="#">Vacant Apartment List</a></li>
+                           <li><a href="#">Automobile Make Count</a></li>
+                           <li><a href="#">Rental Lease Lengths</a></li>
+                           <li><a href="#">Rent Collected</a></li>
+                        </ul>
+                   </li>
+
+                   <li class="dropdown">
+                       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Supervisor) <b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                           <li><a href="#">Homepage</a></li>
+                           <li><a href="#">Pending Apartment Complaints</a></li>
+                           <li><a href="#">Staff Rental Summary</a></li>
+                           <li><a href="#">Staff Apartment Details</a></li>
+                           <li><a href="#">Update Pending Complaint</a></li>
+                        </ul>
+                   </li>
+
+                   <li><a href="#">Create Rental</a></li>
+
+
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Customer Service) <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Tenant List</a></li>
+                            <li><a href="#">Payment List</a></li>
+
+                        </ul>
+                    </li>
+
+
+             <li class="dropdown">
+                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Tenant) <b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                     <li><a href="#">Rental Agreement</a></li>
+                     <li><a href="#">Pay Rent</a></li>
+                     <li><a href="#">Enter Testimonial</a></li>
+                     <li><a href="#">Enter Complaint</a></li>
+                 </ul>
+             </li>
+
+
+               </ul>
+               <ul class="nav navbar-nav navbar-right">
+                 <li><a href="#">Log Out</a></li>
+                   </li>
+               </ul>
+           </div><!-- /.navbar-collapse -->
+
+
+
+
+
+
+    </ul>
+  </div>
+</nav>
+ <?php echo $this->headMeta(); ?>
+
+ <?php echo $this->headTitle(); ?>
+
+</head>
+
+<body>
+
+<div id="content">
+
+ <h1><?php echo $this->escape($this->title); ?></h1>
+
+ <?php echo $this->layout()->content; ?>
+
+</div>
+
+</body>
+
+</html>
