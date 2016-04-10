@@ -112,7 +112,7 @@ CREATE TABLE IF NOT EXISTS complaints
  
 DROP TABLE IF EXISTS testimonials; 
 CREATE TABLE IF NOT EXISTS testimonials
-	(testimonial_id INT NOT NULL,
+	(testimonial_id INT NOT NULL AUTO_INCREMENT,
     testimonial_date DATE NOT NULL,
     testimonial_content TEXT NOT NULL,
 	tenant_ss CHAR(9),
