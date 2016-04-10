@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS staff
     dob DATE NOT NULL,
     salary INT NOT NULL,
     username VARCHAR(25) NOT NULL,
-    password CHAR(64) NOT NULL,
+    password VARCHAR(64) NOT NULL,
 	PRIMARY KEY (staff_no));
 
 DROP TABLE IF EXISTS tenant;    
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS tenant
     employer_name VARCHAR(50),
     gender ENUM('M', 'F') NOT NULL,
     username VARCHAR(25) NOT NULL,
-    password CHAR(64) NOT NULL,
+    password VARCHAR(64) NOT NULL,
     rental_no INTEGER NOT NULL,
 	PRIMARY KEY (tenant_ss),
     FOREIGN KEY (rental_no) REFERENCES rental(rental_no));
