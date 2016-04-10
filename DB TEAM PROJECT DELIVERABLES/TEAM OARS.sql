@@ -105,10 +105,10 @@ CREATE TABLE IF NOT EXISTS complaints
     apt_complaint TEXT,
     status ENUM('F', 'P') NULL,
 	rental_no INT,
-	staff_no CHAR(5),
+	apt_no INT NOT NULL,
 	PRIMARY KEY (complaint_no),
 	FOREIGN KEY (rental_no) REFERENCES rental(rental_no),
-	FOREIGN KEY (staff_no) REFERENCES staff(staff_no));
+	FOREIGN KEY (apt_no) REFERENCES apartment(apt_no));
  
 DROP TABLE IF EXISTS testimonials; 
 CREATE TABLE IF NOT EXISTS testimonials
