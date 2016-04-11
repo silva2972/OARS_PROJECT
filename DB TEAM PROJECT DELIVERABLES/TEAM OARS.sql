@@ -23,6 +23,36 @@ CREATE TABLE IF NOT EXISTS staff
 	PRIMARY KEY (staff_no));
 DESC staff;
 
+-- Creating a new apartment table
+DROP TABLE IF EXISTS apartment;	
+CREATE TABLE IF NOT EXISTS apartment
+	(apt_no INT NOT NULL,
+	apt_type INT NOT NULL,
+	apt_status ENUM('R', 'V') NOT NULL,
+	apt_utility ENUM('Y', 'N') NOT NULL,
+	apt_deposit_amt INT NOT NULL,
+	apt_rent_amt INT NOT NULL,
+	PRIMARY KEY (apt_no));
+DESC apartment;
+
+-- Creating a new rental table
+DROP TABLE IF EXISTS rental;
+CREATE TABLE IF NOT EXISTS rental
+	(rental_no INT NOT NULL,
+	rental_date DATE NOT NULL,
+	rental_status ENUM('O', 'S') NOT NULL,
+	cancel_date DATE,
+	lease_type ENUM('One', 'Six') NOT NULL,
+	lease_start DATE NOT NULL,
+	lease_end DATE NOT NULL,
+	renewal_date DATE,
+	staff_no CHAR(5) NOT NULL,
+	apt_no INT NOT NULL,
+	FOREIGN KEY(apt_no) REFERENCES apartment(apt_no),
+	FOREIGN KEY(staff_no) REFERENCES staff(staff_no),
+	PRIMARY KEY (rental_no));
+DESC rental;
+
 -- Creating a new tenant table
 DROP TABLE IF EXISTS tenant;    
 CREATE TABLE IF NOT EXISTS tenant
@@ -40,18 +70,6 @@ CREATE TABLE IF NOT EXISTS tenant
 	PRIMARY KEY (tenant_ss),
 	FOREIGN KEY (rental_no) REFERENCES rental(rental_no));
 DESC tenant;
-
--- Creating a new apartment table
-DROP TABLE IF EXISTS apartment;	
-CREATE TABLE IF NOT EXISTS apartment
-	(apt_no INT NOT NULL,
-	apt_type INT NOT NULL,
-	apt_status ENUM('R', 'V') NOT NULL,
-	apt_utility ENUM('Y', 'N') NOT NULL,
-	apt_deposit_amt INT NOT NULL,
-	apt_rent_amt INT NOT NULL,
-	PRIMARY KEY (apt_no));
-DESC apartment;
 
 -- Creating a new tenant_auto table
 DROP TABLE IF EXISTS tenant_auto;    
@@ -81,24 +99,6 @@ CREATE TABLE IF NOT EXISTS tenant_family
 	PRIMARY KEY (family_ss),
 	FOREIGN KEY (tenant_ss) REFERENCES tenant(tenant_ss));
 DESC tenant_family;
-
--- Creating a new rental table
-DROP TABLE IF EXISTS rental;
-CREATE TABLE IF NOT EXISTS rental
-	(rental_no INT NOT NULL,
-	rental_date DATE NOT NULL,
-	rental_status ENUM('O', 'S') NOT NULL,
-	cancel_date DATE,
-	lease_type ENUM('One', 'Six') NOT NULL,
-	lease_start DATE NOT NULL,
-	lease_end DATE NOT NULL,
-	renewal_date DATE,
-	staff_no CHAR(5) NOT NULL,
-	apt_no INT NOT NULL,
-	FOREIGN KEY(apt_no) REFERENCES apartment(apt_no),
-	FOREIGN KEY(staff_no) REFERENCES staff(staff_no),
-	PRIMARY KEY (rental_no));
-DESC rental;
 
 -- Creating a new rental_invoice table
 DROP TABLE IF EXISTS rental_invoice;    
@@ -140,3 +140,4 @@ CREATE TABLE IF NOT EXISTS testimonials
 	PRIMARY KEY (testimonial_id),
 	FOREIGN KEY (tenant_ss) REFERENCES tenant(tenant_ss));
 DESC testimonials;
+
