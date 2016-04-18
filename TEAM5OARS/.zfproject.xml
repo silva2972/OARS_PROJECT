@@ -29,6 +29,15 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Testimonials"/>
+          <dbTableFile dbTableName="TestimonialsView"/>
+          <dbTableFile dbTableName="Tenant"/>
+          <dbTableFile dbTableName="Staff"/>
+          <dbTableFile dbTableName="Complaints"/>
+          <dbTableFile dbTableName="Rental"/>
+          <dbTableFile dbTableName="TenantFamily"/>
+          <dbTableFile dbTableName="Apartment"/>
+          <dbTableFile dbTableName="TenantAuto"/>
+          <dbTableFile dbTableName="RentalInvoice"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>

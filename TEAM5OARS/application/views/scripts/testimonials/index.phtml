@@ -32,13 +32,13 @@
 </div>
 <table>
 <tr>
-    <th>Testimonial ID</th>
+    <th>Tenant Name</th>
     <th>Testimonial Date</th>
     <th>Testimonial Content</th>
 </tr>
 <?php foreach($this->testimonials as $testimonial) : ?>
 <tr>
-    <td><?php echo $this->escape($testimonial->testimonial_id);?></td>
+    <td><?php echo $this->escape($testimonial->tenant_name);?></td>
     <td><?php echo $this->escape($testimonial->testimonial_date);?></td>
     <td><?php echo $this->escape($testimonial->testimonial_content);?></td>
 </tr>
