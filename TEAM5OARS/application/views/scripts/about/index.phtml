@@ -23,14 +23,13 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.phtml">TEAM5OARS</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li ><a href="index.phtml">Home</a></li>
-      <li class="active"><a href="about.phtml">About Us</a></li>
-      <li><a href="contact.phtml">Contact Us</a></li>
-      <li><a href="testimonials.phtml">Testimonials</a></li>
-      <li><a href="masterpage.phtml">Master Page</a></li>
+		<a class="navbar-brand" href="<?php echo $this->baseURL();?>">TEAM5OARS</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="<?php echo $this->baseURL();?>">Home</a></li>
+        <li class="active"><a href="<?php echo $this->baseURL();?>/about">About Us</a></li>
+        <li><a href="<?php echo $this->baseURL();?>/contact">Contact Us</a></li>
+        <li><a href="<?php echo $this->baseURL();?>/testimonials/">Testimonials</a></li>
     </ul>
   </div>
 </nav>
@@ -43,7 +42,7 @@
   <p>paragraph 2</p>
   <br>
   <p>paragraph 3</p>
-  
+
   <div class="circle-photo">Visak</div>
   <div class="circle-photo">Luis</div>
   <div class="circle-photo">Keith</div>
@@ -52,7 +51,7 @@
   <div class="circle-photo">Kaisong</div>
   <div class="circle-photo">Sai</div>
   <img class="circle-photo" src="http://i.imgur.com/ZMgf1rm.jpg" style="width:300px; height:300px;"></div>
-  
+
 </div>
 <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '774faf75-c16d-4334-a315-7843cdd07aec', f: true }); done = true; } }; })();</script>
 

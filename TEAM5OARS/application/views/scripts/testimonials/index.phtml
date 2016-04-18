@@ -9,32 +9,41 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="index.phtml">TEAM5OARS</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="index.phtml">Home</a></li>
-      <li><a href="about.phtml">About Us</a></li>
-      <li><a href="contact.phtml">Contact Us</a></li>
-      <li><a href="testimonials.phtml">Testimonials</a></li>
-      <li class="active"><a href="masterpage.phtml">Master Page</a></li>
+		<a class="navbar-brand" href="<?php echo $this->baseURL();?>">TEAM5OARS</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="<?php echo $this->baseURL();?>">Home</a></li>
+        <li><a href="<?php echo $this->baseURL();?>/about">About Us</a></li>
+        <li><a href="<?php echo $this->baseURL();?>/contact">Contact Us</a></li>
+        <li class="active"><a href="<?php echo $this->baseURL();?>/testimonials/">Testimonials</a></li>
     </ul>
   </div>
 </nav>
-
+<div class="row">
 <div class="container">
-   <h1>TEAM5OARS</h1>
-  <h3>Master Page</h3>
+ <h1>TEAM5OARS</h1>
+  <h3>Testimonials</h3>
 
-  <p>This is the master page. More text will go here.</p>
-  <br>
-  <p>paragraph 2</p>
-  <br>
-  <p>paragraph 3</p>
-
-  <input class="btn btn-default" type="button" value="Button One">
-<input class="btn btn-default" type="submit" value="Button Two">
+  <div class="col-lg-6">
+   <input type="text" class="form-control" placeholder="Search testimonials....">
+      <span class="input-group-btn"><button class="btn btn-default" type="button">Search</button>
+      </span>
 </div>
-
+</div>
+<table>
+<tr>
+    <th>Testimonial ID</th>
+    <th>Testimonial Date</th>
+    <th>Testimonial Content</th>
+</tr>
+<?php foreach($this->testimonials as $testimonial) : ?>
+<tr>
+    <td><?php echo $this->escape($testimonial->testimonial_id);?></td>
+    <td><?php echo $this->escape($testimonial->testimonial_date);?></td>
+    <td><?php echo $this->escape($testimonial->testimonial_content);?></td>
+</tr>
+<?php endforeach; ?>
+</table>
 <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '774faf75-c16d-4334-a315-7843cdd07aec', f: true }); done = true; } }; })();</script>
 
 </body>
