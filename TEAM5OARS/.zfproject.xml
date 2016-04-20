@@ -23,6 +23,36 @@
         <controllerFile controllerName="Contact">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="LookUpRentalAgreement">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="PayRrent">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="Complaints">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="CreateRental">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="VacantApartmentList">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="AutoMakeCount">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="RentalLeases">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="RentCollected">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="StaffRentalSummary">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="StaffApartmentDetails">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -64,6 +94,36 @@
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Contact">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="LookUpRentalAgreement">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="PayRrent">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Complaints">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="CreateRental">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="VacantApartmentList">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="AutoMakeCount">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="RentalLeases">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="RentCollected">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="StaffRentalSummary">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="StaffApartmentDetails">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
