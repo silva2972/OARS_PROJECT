@@ -12,11 +12,13 @@
   <h3>Testimonials</h3>
 
   <div class="col-lg-6">
-   <input type="text" class="form-control" placeholder="Search testimonials....">
-      <span class="input-group-btn"><button class="btn btn-default" type="button">Search</button>
-      </span>
+      <form action="<?php echo $this->baseURL(); ?>/testimonials" method="POST">
+          <input type="text" class="form-control" name="keyword" placeholder="Search testimonials....">
+          <input type="submit" name="submit" value="Search" class="button"/>
+      </form>
 </div>
 </div>
+<br>
 <table>
 <tr>
     <th>Tenant Name</th>

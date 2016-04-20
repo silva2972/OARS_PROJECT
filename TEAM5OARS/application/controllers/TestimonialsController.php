@@ -12,6 +12,14 @@ class TestimonialsController extends Zend_Controller_Action
     {
         $testimonials = new Application_Model_DbTable_TestimonialsView();
         $this->view->testimonials = $testimonials->fetchAll();
+
+        if (isset($_POST["submit"])) {
+            $keyword = $_POST["keyword"];
+            $this->view->testimonials = $testimonials->fetchAll(
+                $testimonials->select()
+                    ->where("testimonial_content LIKE '%" . $keyword . "%'")
+                );
+        }
     }
 
 
