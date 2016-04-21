@@ -22,5 +22,12 @@ class TestimonialsController extends Zend_Controller_Action
         }
     }
 
+    public function addAction()
+    {
+        // action body
+    }
+
 
 }
+
+
