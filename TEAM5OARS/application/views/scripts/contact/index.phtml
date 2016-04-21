@@ -5,63 +5,43 @@
 </head>
 
 <body>
-
 <div class="container">
-  <h1>TEAM5OARS</h1>
-  <h3>Contact Us</h3>
+ <h1>TEAM5OARS</h1>
+  <h3>Testimonials</h3>
 
-  <br>
-  <form class="form-horizontal">
- <div class="form-group">
-    <label for="inputName" class="col-sm-2 control-label">Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputName">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-10">
-      <input type="email" class="form-control" id="inputEmail3">
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Message</label>
-    <div class="col-sm-10">
-    <textarea class="form-control" rows="3"></textarea>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit</button>
-    </div>
-  </div>
-</form>
+<br>
+
+        <form class="form-inline" action="<?php echo $this->baseURL(); ?>/testimonials" method="POST">
+            <input type="text" class="form-control" name="keyword" placeholder="Search testimonials....                         ">
+            <input type="submit" class="btn btn-default" name="submit" value="Search" class="button"/>
+        </form>
+<br><br>
+
+<div class="bs-example" data-example-id="striped-table"> <table class="table table-striped">
+  <thead> <tr>
+    <th>Tenant Name</th>
+<th>Testimonial Date</th>
+<th>Testimonial Content</th>
+
+ </tr> </thead>
+ <tbody> <tr>
+   <?php foreach($this->testimonials as $testimonial) : ?>
+   <tr>
+
+     <th scope="row"><?php echo $this->escape($testimonial->tenant_name);?></th> <td><?php echo $this->escape($testimonial->testimonial_date);?></td> <td><?php echo $this->escape($testimonial->testimonial_content);?></td>  </tr>
+     <?php endforeach; ?>
+        </tbody> </table> </div>
+
+
+
+
+
+
 
 </div>
-
-
-COME VISIT US!
-TEAM5OARS
-12502 Seattle Ln
-Houston, TX 77065
-Phone: 888-273-0682 Fax: 281-721-9703
-OFFICE HOURS:
-Monday - Friday 9:00 AM - 7:00 PM
-Saturday 10:00 AM - 5:00 PM
-Sunday 1:00 PM - 5:00 PM
 
 
 <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '774faf75-c16d-4334-a315-7843cdd07aec', f: true }); done = true; } }; })();</script>
 
 
 </body>
-
-<div class="footer navbar-fixed-bottom">
-      <div class="container">
-        <p class="text-muted">Copyright TEAM5OARS 2016</p>
-      </div>
-    </div>
