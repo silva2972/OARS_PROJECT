@@ -47,7 +47,7 @@
 </tr>
 <?php endforeach; ?>
 </table>
-<?php if (!isset($this->tenant_family)) : ?>
+<?php if (!empty($this->tenant_family[0])) : ?>
 <table>Tenant Family
 <tr>
     <th>Family SS</th>
