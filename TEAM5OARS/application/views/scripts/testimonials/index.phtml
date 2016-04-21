@@ -1,4 +1,3 @@
-
 <head>
      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -6,39 +5,43 @@
 </head>
 
 <body>
-<div class="row">
 <div class="container">
  <h1>TEAM5OARS</h1>
   <h3>Testimonials</h3>
 
-  <div class="col-lg-6">
-      <form action="<?php echo $this->baseURL(); ?>/testimonials" method="POST">
-          <input type="text" class="form-control" name="keyword" placeholder="Search testimonials....">
-          <input type="submit" name="submit" value="Search" class="button"/>
-      </form>
-</div>
-</div>
 <br>
-<table>
-<tr>
+
+        <form class="form-inline" action="<?php echo $this->baseURL(); ?>/testimonials" method="POST">
+            <input type="text" class="form-control" name="keyword" placeholder="Search testimonials....                         ">
+            <input type="submit" class="btn btn-default" name="submit" value="Search" class="button"/>
+        </form>
+<br><br>
+
+<div class="bs-example" data-example-id="striped-table"> <table class="table table-striped">
+  <thead> <tr>
     <th>Tenant Name</th>
-    <th>Testimonial Date</th>
-    <th>Testimonial Content</th>
-</tr>
-<?php foreach($this->testimonials as $testimonial) : ?>
-<tr>
-    <td><?php echo $this->escape($testimonial->tenant_name);?></td>
-    <td><?php echo $this->escape($testimonial->testimonial_date);?></td>
-    <td><?php echo $this->escape($testimonial->testimonial_content);?></td>
-</tr>
-<?php endforeach; ?>
-</table>
+<th>Testimonial Date</th>
+<th>Testimonial Content</th>
+
+ </tr> </thead>
+ <tbody> <tr>
+   <?php foreach($this->testimonials as $testimonial) : ?>
+   <tr>
+
+     <th scope="row"><?php echo $this->escape($testimonial->tenant_name);?></th> <td><?php echo $this->escape($testimonial->testimonial_date);?></td> <td><?php echo $this->escape($testimonial->testimonial_content);?></td>  </tr>
+     <?php endforeach; ?>
+        </tbody> </table> </div>
+
+
+
+
+
+
+
+</div>
+
+
 <script type='text/javascript' data-cfasync='false'>window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '774faf75-c16d-4334-a315-7843cdd07aec', f: true }); done = true; } }; })();</script>
 
-</body>
 
-<div class="footer navbar-fixed-bottom">
-      <div class="container">
-        <p class="text-muted">Copyright TEAM5OARS 2016</p>
-      </div>
-    </div>
+</body>
