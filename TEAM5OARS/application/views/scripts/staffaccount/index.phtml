@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- 
+
+!-->
+
+<html>
+    <head>
+        <title>TEAM5OARS - StaffAccounts</title>
+    </head>
+    <body>
+            <div id="page-banner">
+                <div id="site-page">
+                    Account Management
+                </div>
+            </div>
+            <div id="content">
+                <div id="content-box">
+                    <div id="content-top-title">
+                        Login/Register:
+                        <hr>
+                    </div>
+                    <div id="content-box-left-side-title">
+                        <div id="left-content-grey-box">
+                            <form action="<?php echo $this->baseURL()?>/staffaccount/login" method="POST">
+                                Username:<br>
+                                <input type="text" name="username" required>
+                                <br>
+                                Password:<br>
+                                <input type="password" name="password" required">
+                                <input id="login-button" class="green-button" type="submit" value="Log In">
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        	
+    </body>
+</html>
