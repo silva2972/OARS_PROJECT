@@ -1,4 +1,32 @@
-<br /><br />
-<div id="view-content">
-	<p>View script for controller <b>LookUpRentalAgreement</b> and script/action name <b>index</b></p>
-</div>
+<form action="<?php echo $this->baseURL(); ?>/tenant" method="POST">
+	<input type="text" class="form-control" name="tenantss" placeholder="Enter SSN">
+	<input type="submit" name="submit" value="Submit" class="button"/>
+</form>
+<table>Rental Agreement
+<tr>
+    <th>Rental ID</th>
+    <th>Rental Number</th>
+    <th>Apartment Number</th>
+	<th>Apartment Type</th>
+	<th>Apartment Deposit</th>
+	<th>Lease Type</th>
+	<th>Tenant SS</th>
+	<th>Tenant Name</th>
+	<th>Tenant Work Phone</th>
+	<th>Tenant DOB</th>
+</tr>
+<?php
+	foreach($this->tenant_info as $tenant) : ?>
+<tr>
+    <td><?php echo $this->escape($tenant->tenant_ss);?></td>
+	<td><?php echo $this->escape($tenant->tenant_name);?></td>
+	<td><?php echo $this->escape($tenant->tenant_dob);?></td>
+	<td><?php echo $this->escape($tenant->marital);?></td>
+	<td><?php echo $this->escape($tenant->work_phone);?></td>
+	<td><?php echo $this->escape($tenant->home_phone);?></td>
+	<td><?php echo $this->escape($tenant->employer_name);?></td>
+	<td><?php echo $this->escape($tenant->gender);?></td>
+
+</tr>
+<?php endforeach; ?>
+</table>
