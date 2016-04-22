@@ -24,5 +24,85 @@ class Application_Model_DbTable_Tenant extends Zend_Db_Table_Abstract
         return $row["tenant_ss"];
     }
 
+    public function getTenant_SS()
+    {
+
+    }
+   public function setTenant_SS()
+    {
+
+    }
+   public function getTenant_Name()
+    {
+
+    }
+    public function setTenant_Name()
+    {
+
+    }
+    public function getTenant_DOB()
+    {
+
+    }
+    public function setTenant_DOB()
+    {
+
+    }public function getMarital()
+    {
+
+    }
+    public function setMarital()
+    {
+
+    }
+    public function getWork_Phone()
+    {
+
+    }public function setWork_Phone()
+    {
+
+    }
+    public function getHome_Phone()
+    {
+
+    }
+    public function setHome_Phone()
+    {}
+
+    public function getEmployer()
+    {
+
+    }
+    public function setEmployer()
+    {
+
+    }
+    public function getGender()
+    {
+
+    }
+    public function setGender()
+    {
+
+    }
+
+    public function getUsername()
+    {
+
+    }
+    public function setUsername()
+    {
+
+    }
+    public function getPassword()
+    {
+
+    }
+    public function setPassword()
+    {
+        
+    }
+
+
 }
 
