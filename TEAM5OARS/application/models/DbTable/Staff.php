@@ -37,5 +37,26 @@ function UsernameAndPasswordValidate($user, $pass)
     {
       
     }
+    
+    public function getStaff_No() {}
+    public function setStaff_No($new_staff_no) {}
+    public function getFirst_Name() {}
+    public function setFirst_Name($new_first_name) {}
+    public function getLast_Name() {}
+    public function setLast_Name($new_last_name) {}
+    public function getPosition() {}
+    public function setPosition($new_position) {}
+    public function getGender() {}
+    public function getDOB() {}
+    public function setDOB($new_dob) {}
+    public function setGender($new_gender) {}
+    public function getSalary() {}
+    public function setSalary($new_salary) {}
+    public function getUsername() {}
+    public function setUsername($new_username) {}
+    public function getPassword() {}
+    public function setPassword($new_password) {}    
+    
+    
 }
 
