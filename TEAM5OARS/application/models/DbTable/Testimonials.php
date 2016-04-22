@@ -24,4 +24,11 @@ class Application_Model_DbTable_Testimonials extends Zend_Db_Table_Abstract
         $this->insert($data);
     }
 
+    public function getTestimonial_Id() {}
+    public function setTestimonial_Id() {}
+    public function getTestimonial_Date() {}
+    public function setTestimonial_Date() {}
+    public function getTestimonial_Content() {}
+    public function setTestimonial_Content() {}
+
 }
