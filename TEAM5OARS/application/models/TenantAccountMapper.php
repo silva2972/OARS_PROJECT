@@ -1,11 +1,5 @@
 <?php
 
-//UC1 Register
-//Coded By: Jared Jones, Jeff Phan, Chad Van Roekel, Chirag Ghanshani
-//Date Created: 04/22/2015
-//Date Approved: 04/27/2015
-//Approved By: Linh Ty, Marden Benoit
-
 class TenantAccountMapper {
 
     private $_DB = null;
@@ -40,7 +34,7 @@ class TenantAccountMapper {
 
         if (strcmp($token, $hashToken) != 0)
             return false;
-        
+
         return true;
     }
 
@@ -56,7 +50,7 @@ class TenantAccountMapper {
     {
         if (!$this->LoggedIn())
                 return null;
-        
+
         $user = $_SESSION['login_user'];
         return $this->_DB->GrabName($user);
     }
