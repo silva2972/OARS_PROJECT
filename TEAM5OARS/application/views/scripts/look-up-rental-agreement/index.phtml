@@ -4,7 +4,6 @@
 </form>
 <table>Rental Agreement
 <tr>
-    <th>Rental ID</th>
     <th>Rental Number</th>
     <th>Apartment Number</th>
 	<th>Apartment Type</th>
@@ -15,18 +14,17 @@
 	<th>Tenant Work Phone</th>
 	<th>Tenant DOB</th>
 </tr>
-<?php
-	foreach($this->tenant_info as $tenant) : ?>
-<tr>
-    <td><?php echo $this->escape($tenant->tenant_ss);?></td>
-	<td><?php echo $this->escape($tenant->tenant_name);?></td>
-	<td><?php echo $this->escape($tenant->tenant_dob);?></td>
-	<td><?php echo $this->escape($tenant->marital);?></td>
-	<td><?php echo $this->escape($tenant->work_phone);?></td>
-	<td><?php echo $this->escape($tenant->home_phone);?></td>
-	<td><?php echo $this->escape($tenant->employer_name);?></td>
-	<td><?php echo $this->escape($tenant->gender);?></td>
 
+<tr>
+    <td><?php echo $this->escape($this->rental[0]->rental_no);?></td>
+	<td><?php echo $this->escape($this->apartment[0]->apt_no);?></td>
+	<td><?php echo $this->escape($this->type);?></td>
+	<td><?php echo $this->escape($this->apartment[0]->apt_deposit_amt);?></td>
+	<td><?php echo $this->escape($this->rental[0]->lease_type);?></td>
+	<td><?php echo $this->escape($this->tenant[0]->tenant_ss);?></td>
+	<td><?php echo $this->escape($this->tenant[0]->tenant_name);?></td>
+	<td><?php echo $this->escape($this->tenant[0]->work_phone);?></td>
+	<td><?php echo $this->escape($this->tenant[0]->tenant_dob);?></td>
 </tr>
-<?php endforeach; ?>
+
 </table>

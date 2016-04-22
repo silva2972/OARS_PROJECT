@@ -1,6 +1,6 @@
 <?php
 
-class ComplaintsController extends Zend_Controller_Action
+class PaymentListController extends Zend_Controller_Action
 {
 
     public function init()
@@ -13,13 +13,6 @@ class ComplaintsController extends Zend_Controller_Action
         // action body
     }
 
-    public function updateAction()
-    {
-        // action body
-    }
-
 
 }
-
-
 

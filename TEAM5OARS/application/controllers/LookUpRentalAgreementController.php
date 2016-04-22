@@ -17,12 +17,28 @@ class LookUpRentalAgreementController extends Zend_Controller_Action
         if (isset($_POST["submit"])) {
             $tenantss = $_POST["tenantss"];
         }
-        $tenant_info = $tenants->fetchAll(
-            $tenants->select()
-                ->where("tenant_ss = $tenantss")
-            );
-        $rental_no = $tenant_info->rental_no;
-        
+
+        $tenant_info = $tenants->find($tenantss);
+        $rental_no = $tenant_info[0]->rental_no;
+        $rental_info = $rentals->find($rental_no);
+        $apt_no = $rental_info[0]->apt_no;
+        $apartment_info = $apartments->find($apt_no);
+
+        $apt_type = $apartment_info[0]->apt_type;
+        if($apt_type == 0) {
+            $type = "Studio";
+        } elseif ($apt_type == 1) {
+            $type = "One Bedroom";
+        } elseif ($apt_type == 2) {
+            $type = "Two Bedroom";
+        } else {
+            $type = "Three Bedroom";
+        }
+
+        $this->view->tenant = $tenant_info;
+        $this->view->rental = $rental_info;
+        $this->view->apartment = $apartment_info;
+        $this->view->type = $type;
     }
 
 

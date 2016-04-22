@@ -32,6 +32,7 @@
         </controllerFile>
         <controllerFile controllerName="Complaints">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="update"/>
         </controllerFile>
         <controllerFile controllerName="CreateRental">
           <actionMethod actionName="index"/>
@@ -55,6 +56,12 @@
           <actionMethod actionName="index"/>
         </controllerFile>
         <controllerFile controllerName="Tenant">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="TenantList">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="PaymentList">
           <actionMethod actionName="index"/>
         </controllerFile>
       </controllersDirectory>
@@ -134,6 +141,15 @@
             <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Tenant">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Complaints">
+            <viewScriptFile forActionName="update"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="TenantList">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="PaymentList">
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
