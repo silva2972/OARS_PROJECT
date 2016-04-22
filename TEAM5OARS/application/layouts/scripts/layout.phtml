@@ -31,10 +31,10 @@ echo $this->doctype(); ?>
                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Manager) <b class="caret"></b></a>
                        <ul class="dropdown-menu">
                            <li><a href="#">Homepage</a></li>
-                           <li><a href="#">Vacant Apartment List</a></li>
-                           <li><a href="#">Automobile Make Count</a></li>
-                           <li><a href="#">Rental Lease Lengths</a></li>
-                           <li><a href="#">Rent Collected</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/VacantApartmentList">Vacant Apartment List</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/AutoMakeCount">Automobile Make Count</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/RentalLeases">Rental Lease Lengths</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/RentCollected">Rent Collected</a></li>
                         </ul>
                    </li>
 
@@ -42,21 +42,21 @@ echo $this->doctype(); ?>
                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Supervisor) <b class="caret"></b></a>
                        <ul class="dropdown-menu">
                            <li><a href="#">Homepage</a></li>
-                           <li><a href="#">Pending Apartment Complaints</a></li>
-                           <li><a href="#">Staff Rental Summary</a></li>
-                           <li><a href="#">Staff Apartment Details</a></li>
-                           <li><a href="#">Update Pending Complaint</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/Complaints">Pending Apartment Complaints</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/StaffRentalSummary">Staff Rental Summary</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/StaffApartmentDetails">Staff Apartment Details</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/">Update Pending Complaint - TODO</a></li>
                         </ul>
                    </li>
 
-                   <li><a href="#">Create Rental</a></li>
+                   <li><a href="<?php echo $this->baseURL();?>/CreateRental">Create Rental</a></li>
 
 
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Customer Service) <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Tenant List</a></li>
-                            <li><a href="#">Payment List</a></li>
+                            <li><a href="<?php echo $this->baseURL();?>/">Tenant List - todo</a></li>
+                            <li><a href="<?php echo $this->baseURL();?>/">Payment List - todo</a></li>
 
                         </ul>
                     </li>
@@ -65,10 +65,10 @@ echo $this->doctype(); ?>
              <li class="dropdown">
                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Tenant) <b class="caret"></b></a>
                  <ul class="dropdown-menu">
-                     <li><a href="#">Rental Agreement</a></li>
-                     <li><a href="#">Pay Rent</a></li>
-                     <li><a href="#">Enter Testimonial</a></li>
-                     <li><a href="#">Enter Complaint</a></li>
+                     <li><a href="<?php echo $this->baseURL();?>/LookUpRentalAgreement">Rental Agreement</a></li>
+                     <li><a href="<?php echo $this->baseURL();?>/RayRrent">Pay Rent</a></li>
+                     <li><a href="<?php echo $this->baseURL();?>/Testimonials">Enter Testimonial</a></li>
+                     <li><a href="<?php echo $this->baseURL();?>/Complaints">Enter Complaint</a></li>
                  </ul>
              </li>
 
