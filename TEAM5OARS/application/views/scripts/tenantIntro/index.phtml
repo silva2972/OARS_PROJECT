@@ -3,80 +3,94 @@
 
 <div class="container">
   <h1>TEAM5OARS</h1>
-  <h3>TenantIntro</h3>
+  <h3>Tenant Homepage: <?php echo $this->LoggedInView?></h3>
 
-  <p><?php echo $this->LoggedInView?></p>
-  <table>Tenant Info
-<tr>
-    <th>Tenant SS</th>
-    <th>Tenant Name</th>
-    <th>Tenant DOB</th>
-	<th>Tenant Marital</th>
-	<th>Tenant Work Phone</th>
-	<th>Tenant Home Phone</th>
-	<th>Tenant Employer</th>
-	<th>Tenant Gender</th>
-</tr>
-
-<tr>
-    <td><?php echo $this->tenant_info['tenant_ss'];?></td>
-	<td><?php echo $this->tenant_info['tenant_name'];?></td>
-	<td><?php echo $this->tenant_info['tenant_dob'];?></td>
-	<td><?php echo $this->tenant_info['marital'];?></td>
-	<td><?php echo $this->tenant_info['work_phone'];?></td>
-	<td><?php echo $this->tenant_info['home_phone'];?></td>
-	<td><?php echo $this->tenant_info['employer_name'];?></td>
-	<td><?php echo $this->tenant_info['gender'];?></td>
-
-</tr>
-
+<hr>
+<h4>Tenant Info</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Tenant SS</th>
+      <th>Tenant Name</th>
+      <th>Tenant DOB</th>
+  	<th>Tenant Marital</th>
+  	<th>Tenant Work Phone</th>
+  	<th>Tenant Home Phone</th>
+  	<th>Tenant Employer</th>
+  	<th>Tenant Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><?php echo $this->tenant_info['tenant_ss'];?></td>
+    	<td><?php echo $this->tenant_info['tenant_name'];?></td>
+    	<td><?php echo $this->tenant_info['tenant_dob'];?></td>
+    	<td><?php echo $this->tenant_info['marital'];?></td>
+    	<td><?php echo $this->tenant_info['work_phone'];?></td>
+    	<td><?php echo $this->tenant_info['home_phone'];?></td>
+    	<td><?php echo $this->tenant_info['employer_name'];?></td>
+    	<td><?php echo $this->tenant_info['gender'];?></td>
+    </tr>
+    </tbody>
 </table>
-<table>Tenant Auto
-<tr>
-    <th>License No</th>
-    <th>Make</th>
-	<th>Model</th>
-	<th>Year</th>
-    <th>Color</th>
-</tr>
-<?php
-	foreach($this->tenant_auto as $auto) : ?>
-<tr>
-    <td><?php echo $this->escape($auto->license_no);?></td>
-	<td><?php echo $this->escape($auto->auto_make);?></td>
-	<td><?php echo $this->escape($auto->auto_model);?></td>
-	<td><?php echo $this->escape($auto->auto_year);?></td>
-	<td><?php echo $this->escape($auto->auto_color);?></td>
-</tr>
-<?php endforeach; ?>
+<hr>
+<br>
+<h4>Tenant Auto</h4>
+<table class="table">
+    <thead>
+    <tr>
+      <th>License No</th>
+      <th>Make</th>
+  	<th>Model</th>
+  	<th>Year</th>
+      <th>Color</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    	foreach($this->tenant_auto as $auto) : ?>
+    <tr>
+        <td><?php echo $this->escape($auto->license_no);?></td>
+    	<td><?php echo $this->escape($auto->auto_make);?></td>
+    	<td><?php echo $this->escape($auto->auto_model);?></td>
+    	<td><?php echo $this->escape($auto->auto_year);?></td>
+    	<td><?php echo $this->escape($auto->auto_color);?></td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
 </table>
-<?php if (!empty($this->tenant_family[0])) : ?>
-<table>Tenant Family
-<tr>
-    <th>Family SS</th>
-    <th>Family Name</th>
-    <th>Spouse</th>
-	<th>Child</th>
-	<th>Divorced</th>
-	<th>Single</th>
-	<th>Family Gender</th>
-	<th>Family DOB</th>
-</tr>
-<?php
-	foreach($this->tenant_family as $family) : ?>
-<tr>
-    <td><?php echo $this->escape($family->family_ss);?></td>
-	<td><?php echo $this->escape($family->full_name);?></td>
-	<td><?php echo $this->escape($family->spouse);?></td>
-	<td><?php echo $this->escape($family->child);?></td>
-	<td><?php echo $this->escape($family->divorced);?></td>
-	<td><?php echo $this->escape($family->single);?></td>
-	<td><?php echo $this->escape($family->gender);?></td>
-	<td><?php echo $this->escape($family->dob);?></td>
-</tr>
-<?php endforeach; ?>
+<hr>
+<br>
+<h4>Tenant Family</h4>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Family SS</th>
+      <th>Family Name</th>
+      <th>Spouse</th>
+  	<th>Child</th>
+  	<th>Divorced</th>
+  	<th>Single</th>
+  	<th>Family Gender</th>
+  	<th>Family DOB</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php
+    	foreach($this->tenant_family as $family) : ?>
+    <tr>
+        <td><?php echo $this->escape($family->family_ss);?></td>
+    	<td><?php echo $this->escape($family->full_name);?></td>
+    	<td><?php echo $this->escape($family->spouse);?></td>
+    	<td><?php echo $this->escape($family->child);?></td>
+    	<td><?php echo $this->escape($family->divorced);?></td>
+    	<td><?php echo $this->escape($family->single);?></td>
+    	<td><?php echo $this->escape($family->gender);?></td>
+    	<td><?php echo $this->escape($family->dob);?></td>
+    </tr>
+    <?php endforeach; ?>
+    </tbody>
 </table>
-<?php endif; ?>
+<hr>
 </div>
-
 </body>
