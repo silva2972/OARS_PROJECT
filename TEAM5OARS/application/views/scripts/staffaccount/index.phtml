@@ -1,39 +1,43 @@
-<!DOCTYPE html>
-<!-- 
 
-!-->
+    <title>TEAM5OARS - Staff Account</title>
+<body>
 
-<html>
-    <head>
-        <title>TEAM5OARS - StaffAccounts</title>
-    </head>
-    <body>
-            <div id="page-banner">
-                <div id="site-page">
-                    Account Management
-                </div>
-            </div>
-            <div id="content">
-                <div id="content-box">
-                    <div id="content-top-title">
-                        Login/Register:
-                        <hr>
-                    </div>
-                    <div id="content-box-left-side-title">
-                        <div id="left-content-grey-box">
-                            <form action="<?php echo $this->baseURL()?>/staffaccount/login" method="POST">
-                                Username:<br>
-                                <input type="text" name="username" required>
-                                <br>
-                                Password:<br>
-                                <input type="password" name="password" required">
-                                <input id="login-button" class="green-button" type="submit" value="Log In">
-                            </form>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        	
-    </body>
-</html>
+  <div class="container">
+    <h1>TEAM5OARS</h1>
+    <h3>Account Management: Staff </h3> <hr>
+    <h4>Login/Register:</h4>
+
+    <br>
+
+
+
+    <div class="col-md-8"  ><BR>
+
+
+      <form class="form-group form-horizontal" action="<?php echo $this->baseURL()?>/staffaccount/login" method="POST">
+
+
+                              <div class="form-group">
+                                <label for="inputName"class="col-sm-2 control-label">Username</label>
+                                <div class="col-sm-10">
+                                  <input type="text"  name="username" required  class="form-control" id="inputName">
+                                </div>
+                              </div>
+                              <div class="form-group form-horizontal">
+                                <label for="inputName"  class="col-sm-2 control-label">Password</label>
+                                <div class="col-sm-10">
+                                  <input type="password" ntype="password" name="password" required class="form-control" id="inputName">
+                                </div>
+                              </div>
+                              <input id="login-button" class="green-button" type="submit" value="Log In">
+    </form>
+
+
+
+
+    </div>
+  </div>
+
+
+
+</body>
