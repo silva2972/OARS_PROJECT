@@ -55,12 +55,12 @@ class StaffAccountController extends Zend_Controller_Action {
                     elseif($role == 'Supervisor')
                         header("location: ../supervisorIntro");
                     elseif($role == 'Assistant')
-                        header("location: ../create-rental"); 
-                    else 
+                        header("location: ../create-rental");
+                    else
                         header("location: ../customerServiceIntro");
                 }
             }
-        }        
+        }
     }
 
         function getCurlData($url) {
@@ -100,8 +100,8 @@ class StaffAccountController extends Zend_Controller_Action {
                       $url = $google_url . "?secret=" . $secret . "&response=" . $recaptcha;
                 else
                     $url = $google_url . "?secret=" . $secret . "&response=" . $recaptcha. "&remoteip=" . $ip;
-                
-                
+
+
                 $res = file_get_contents($url);
                 $res = json_decode($res, true);
 
@@ -134,7 +134,7 @@ class StaffAccountController extends Zend_Controller_Action {
                     echo "<a href=\"" . $this->view->baseURL() . "/account\">Click Here to Try Again</a>";
                     exit();
                 }
-                
+
                 if ($pword == $confirmpass && !empty($fname) && !empty($lname) && !empty($email) && !empty($uname) && !empty($pword)) {
                     $this->_DB->CreateAccount($fname, $lname, $email, $uname, $pword, $institution);
                 }
@@ -145,13 +145,12 @@ class StaffAccountController extends Zend_Controller_Action {
     }
 */
     public function logoutAction() {
-        session_start();
         session_destroy();
 
-        $ref = $_SERVER["HTTP_REFERER"];
-        header("location: " . $ref);
+        // $ref = $_SERVER["HTTP_REFERRER"];
+        header('location: ../');
+
         exit();
     }
 
 }
-

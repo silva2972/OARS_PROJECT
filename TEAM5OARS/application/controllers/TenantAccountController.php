@@ -41,7 +41,7 @@ class TenantAccountController extends Zend_Controller_Action {
                     }
 
                     $name = $this->_DB->GrabName($user);
-                    
+
                     session_start();
                     $_SESSION['login_user'] = $user;
                     $_SESSION['login_token'] = $aM->GetHashedToken($user,$name);
@@ -86,8 +86,8 @@ class TenantAccountController extends Zend_Controller_Action {
                       $url = $google_url . "?secret=" . $secret . "&response=" . $recaptcha;
                 else
                     $url = $google_url . "?secret=" . $secret . "&response=" . $recaptcha. "&remoteip=" . $ip;
-                
-                
+
+
                 $res = file_get_contents($url);
                 $res = json_decode($res, true);
 
@@ -120,7 +120,7 @@ class TenantAccountController extends Zend_Controller_Action {
                     echo "<a href=\"" . $this->view->baseURL() . "/account\">Click Here to Try Again</a>";
                     exit();
                 }
-                
+
                 if ($pword == $confirmpass && !empty($fname) && !empty($lname) && !empty($email) && !empty($uname) && !empty($pword)) {
                     $this->_DB->CreateAccount($fname, $lname, $email, $uname, $pword, $institution);
                 }
@@ -131,13 +131,10 @@ class TenantAccountController extends Zend_Controller_Action {
     }
 */
     public function logoutAction() {
-        session_start();
         session_destroy();
 
-        $ref = $_SERVER["HTTP_REFERER"];
-        header("location: " . $ref);
+        header("location: ../");
         exit();
     }
 
 }
-

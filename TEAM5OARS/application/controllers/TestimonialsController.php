@@ -9,15 +9,9 @@ class TestimonialsController extends Zend_Controller_Action
     public function init()
     {
         session_start();
-        $this->_aM = new TenantAccountMapper();
-        $loggedIn = $this->_aM->LoggedIn();
-        $username = $_SESSION['login_user'];
+
         //If not logged in we can't view this page
-        if (!$loggedIn)
-        {
-            header("location: " . $this->view->baseURL() . "/index");
-            exit();
-        }
+
     }
 
     public function indexAction()
@@ -36,6 +30,14 @@ class TestimonialsController extends Zend_Controller_Action
 
     public function addAction()
     {
+        $this->_aM = new TenantAccountMapper();
+        $loggedIn = $this->_aM->LoggedIn();
+        $username = $_SESSION['login_user'];
+        if (!$loggedIn)
+        {
+            header("location: " . $this->view->baseURL() . "/index");
+            exit();
+        }
         $tenants = new Application_Model_DbTable_Tenant();
         $testimonials = new Application_Model_DbTable_Testimonials();
         $date = date('Y-m-d', time());
