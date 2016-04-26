@@ -84,21 +84,22 @@ echo $this->doctype(); ?>
              <li class="dropdown">
                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Tenant<b class="caret"></b></a>
                  <ul class="dropdown-menu">
+                   <?  if($_session("user-type")=="tenant") { ?>
+                  you should only see this if you are logged in as tenant
+                    <?  } ?>
                    <li><a href="<?php echo $this->baseURL();?>/tenantaccount">Login</a></li>
-                   <li><a href="<?php echo $this->baseURL();?>/tenantintro">Homepage</a></li>
-                     <li><a href="<?php echo $this->baseURL();?>/LookUpRentalAgreement">Rental Agreement</a></li>
-                     <li><a href="<?php echo $this->baseURL();?>/PayRrent">Pay Rent</a></li>
-                     <li><a href="<?php echo $this->baseURL();?>/Testimonials/Add">Enter Testimonial</a></li>
-                     <li><a href="<?php echo $this->baseURL();?>/Complaints">Enter Complaint</a></li>
-                     <li><a href="<?php echo $this->baseURL();?>/tenantaccount/logout">Logout</a></li>
+                  <li><a href="<?php echo $this->baseURL();?>/tenantintro">Homepage</a></li>
+                    <li><a href="<?php echo $this->baseURL();?>/LookUpRentalAgreement">Rental Agreement</a></li>
+                    <li><a href="<?php echo $this->baseURL();?>/PayRrent">Pay Rent</a></li>
+                      <li><a href="<?php echo $this->baseURL();?>/Testimonials/Add">Enter Testimonial</a></li>
+                    <li><a href="<?php echo $this->baseURL();?>/Complaints/Add">Enter Complaint</a></li>
                      </ul>
              </li>
 
 
                </ul>
                <ul class="nav navbar-nav navbar-right">
-                 
-                 <li><a href="<?php echo $this->baseURL();?>/staffaccount/logout">Staff Logout</a></li>
+                 <li><a href="<?php echo $this->baseURL();?>/staffaccount/logout">Logout</a></li>
                    </li>
                </ul>
            </div><!-- /.navbar-collapse -->
