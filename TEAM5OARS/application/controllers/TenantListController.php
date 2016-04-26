@@ -10,9 +10,9 @@ class TenantListController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $tenants = new Application_Model_DbTable_TenantView();
+        $this->view->tenants = $tenants->fetchAll();
     }
 
 
 }
-

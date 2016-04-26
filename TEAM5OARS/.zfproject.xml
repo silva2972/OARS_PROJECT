@@ -85,6 +85,7 @@
           <dbTableFile dbTableName="TenantAuto"/>
           <dbTableFile dbTableName="RentalInvoice"/>
           <dbTableFile dbTableName="ComplaintsView"/>
+          <dbTableFile dbTableName="TenantView"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
