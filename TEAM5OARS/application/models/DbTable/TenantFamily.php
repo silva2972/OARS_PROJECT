@@ -62,18 +62,14 @@ class Application_Model_DbTable_TenantFamily extends Zend_Db_Table_Abstract
     {
 
     }
-    public function getGender()
-    {
 
-    }
     public function getDOB()
     {
 
     }
     public function setDOB()
     {
-        
+
     }
 
 }
-
