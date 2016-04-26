@@ -65,6 +65,12 @@
         <controllerFile controllerName="PaymentList">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="SupervisorIntro">
+          <actionMethod actionName="index"/>
+        </controllerFile>
+        <controllerFile controllerName="ManagerIntro">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -157,6 +163,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="PayRrent">
             <viewScriptFile forActionName="output"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="SupervisorIntro">
+            <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="ManagerIntro">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
