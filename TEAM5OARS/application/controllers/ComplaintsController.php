@@ -8,8 +8,10 @@ class ComplaintsController extends Zend_Controller_Action
 {
 
     protected $isSupervisor = false;
+
     protected $canEnter = false;
-    protected $username;
+
+    protected $username = null;
 
     public function init()
     {
@@ -40,10 +42,17 @@ class ComplaintsController extends Zend_Controller_Action
 
     public function updateAction()
     {
+
+    }
+
+    public function addAction()
+    {
         if (!$this->canEnter) {
             header("location: " . $this->view->baseURL() . "/index");
             exit();
         }
+
+        
     }
 
 

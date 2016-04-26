@@ -34,6 +34,7 @@
         <controllerFile controllerName="Complaints">
           <actionMethod actionName="index"/>
           <actionMethod actionName="update"/>
+          <actionMethod actionName="add"/>
         </controllerFile>
         <controllerFile controllerName="CreateRental">
           <actionMethod actionName="index"/>
@@ -169,6 +170,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="ManagerIntro">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Complaints">
+            <viewScriptFile forActionName="add"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
