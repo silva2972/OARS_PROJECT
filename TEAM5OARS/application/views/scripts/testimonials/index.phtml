@@ -12,20 +12,28 @@
         </form>
 <br><br>
 
-<div class="bs-example" data-example-id="striped-table"> <table class="table table-striped">
-  <thead> <tr>
+<div class="bs-example" data-example-id="striped-table"> 
+    <table class="table table-striped">
+  <thead>
+      <tr>
     <th>Tenant Name</th>
 <th>Testimonial Date</th>
 <th>Testimonial Content</th>
 
- </tr> </thead>
+ </tr>
+</thead>
  <tbody> <tr>
    <?php foreach($this->testimonials as $testimonial) : ?>
    <tr>
 
-     <th scope="row"><?php echo $this->escape($testimonial->tenant_name);?></th> <td><?php echo $this->escape($testimonial->testimonial_date);?></td> <td><?php echo $this->escape($testimonial->testimonial_content);?></td>  </tr>
+     <th scope="row"><?php echo $this->escape($testimonial->tenant_name);?></th>
+     <td><?php echo $this->escape($testimonial->testimonial_date);?></td>
+     <td><?php echo $this->escape($testimonial->testimonial_content);?></td>
+ </tr>
      <?php endforeach; ?>
-        </tbody> </table> </div>
+        </tbody>
+    </table>
+    </div>
 
 
 

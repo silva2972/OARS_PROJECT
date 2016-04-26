@@ -10,7 +10,8 @@ class ComplaintsController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $complaints = new Application_Model_DbTable_ComplaintsView();
+        $this->view->complaints = $complaints->fetchAll();
     }
 
     public function updateAction()
@@ -20,6 +21,3 @@ class ComplaintsController extends Zend_Controller_Action
 
 
 }
-
-
-

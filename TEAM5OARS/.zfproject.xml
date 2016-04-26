@@ -29,6 +29,7 @@
         </controllerFile>
         <controllerFile controllerName="PayRrent">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="output"/>
         </controllerFile>
         <controllerFile controllerName="Complaints">
           <actionMethod actionName="index"/>
@@ -83,6 +84,7 @@
           <dbTableFile dbTableName="Apartment"/>
           <dbTableFile dbTableName="TenantAuto"/>
           <dbTableFile dbTableName="RentalInvoice"/>
+          <dbTableFile dbTableName="ComplaintsView"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -151,6 +153,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="PaymentList">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="PayRrent">
+            <viewScriptFile forActionName="output"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
