@@ -57,7 +57,7 @@ class StaffAccountController extends Zend_Controller_Action {
                     elseif($role == 'Assistant')
                         header("location: ../create-rental"); 
                     else 
-                        header("location: ../customerservice");
+                        header("location: ../customerServiceIntro");
                 }
             }
         }        
