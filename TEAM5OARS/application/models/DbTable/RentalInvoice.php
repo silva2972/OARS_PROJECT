@@ -5,7 +5,15 @@ class Application_Model_DbTable_RentalInvoice extends Zend_Db_Table_Abstract
 
     protected $_name = 'rental_invoice';
 
-
+    function getRentCollected(){
+        $select = $this->select();
+        $select->from($this, array('year' => 'Year(invoice_date)', 'month' => 'Month(invoice_date)','rentCollected' =>'SUM(CC_AMT)'));
+        $select->where('invoice_date BETWEEN DATE(NOW()) - INTERVAL (DAY(NOW()) - 1) DAY - INTERVAL 999 MONTH AND NOW()');
+        $select->group(array('Year(invoice_date)', 'Month(invoice_date)'));
+        $select->order(array('Year(invoice_date)', 'Month(invoice_date)'));
+        $row = $this->fetchAll($select);
+        return $row;
+    }
     public function Rental_Invoice()
     {
 
