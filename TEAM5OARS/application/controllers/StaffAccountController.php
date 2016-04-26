@@ -51,9 +51,9 @@ class StaffAccountController extends Zend_Controller_Action {
                     $_SESSION['login_token'] = $aM->GetHashedToken($user, $fname, $lname);
                     $_SESSION['user_type'] = $role;
                     if($role == 'Manager')
-                        header("location: ../managerHomepage");
+                        header("location: ../managerIntro");
                     elseif($role == 'Supervisor')
-                        header("location: ../supervisorHomepage");
+                        header("location: ../supervisorIntro");
                     elseif($role == 'Assistant')
                         header("location: ../create-rental"); 
                     else 
