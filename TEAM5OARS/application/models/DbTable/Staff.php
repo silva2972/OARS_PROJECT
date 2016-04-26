@@ -14,8 +14,16 @@ class Application_Model_DbTable_Staff extends Zend_Db_Table_Abstract
     private $username;
     private $password;
     private $staff_no;
-
-function UsernameAndPasswordValidate($user, $pass)
+    
+    function getRentalSummary(){
+        $row = $this->fetchAll($this->select()
+                                        ->from(array('s' => $this->_name), array('fname', 'lname','position'))
+                                        ->join(array('r' => 'rental'), 's.staff_no = r.staff_no', array('rentalSum' => 'count(*)'))
+                                        ->group('s.staff_no')
+                                        ->setIntegrityCheck(false));
+        return $row;
+    }
+    function UsernameAndPasswordValidate($user, $pass)
     {
         $row = $this->fetchrow($this->select()->where("username = ?", $user));
         if (!$row || $row["password"] != $pass)
