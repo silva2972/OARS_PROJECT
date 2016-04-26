@@ -23,6 +23,13 @@ class Application_Model_DbTable_Staff extends Zend_Db_Table_Abstract
                                         ->setIntegrityCheck(false));
         return $row;
     }
+    function getStaffApartments(){
+        $row = $this->fetchAll($this->select()
+            ->from(array('s' => $this->_name), array('fname', 'lname','position'))
+            ->join(array('r' => 'rental'), 's.staff_no = r.staff_no', array('apt_no'))
+            ->setIntegrityCheck(false));
+        return $row;
+    }
     function UsernameAndPasswordValidate($user, $pass)
     {
         $row = $this->fetchrow($this->select()->where("username = ?", $user));
