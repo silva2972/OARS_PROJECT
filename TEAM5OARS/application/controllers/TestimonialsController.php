@@ -1,11 +1,23 @@
 <?php
 
+require_once 'Zend/Controller/Action.php';
+require(dirname(__DIR__) . "/models/TenantAccountMapper.php");
+
 class TestimonialsController extends Zend_Controller_Action
 {
 
     public function init()
     {
-        /* Initialize action controller here */
+        session_start();
+        $this->_aM = new TenantAccountMapper();
+        $loggedIn = $this->_aM->LoggedIn();
+        $username = $_SESSION['login_user'];
+        //If not logged in we can't view this page
+        if (!$loggedIn)
+        {
+            header("location: " . $this->view->baseURL() . "/index");
+            exit();
+        }
     }
 
     public function indexAction()
@@ -24,10 +36,19 @@ class TestimonialsController extends Zend_Controller_Action
 
     public function addAction()
     {
-        // action body
+        $tenants = new Application_Model_DbTable_Tenant();
+        $testimonials = new Application_Model_DbTable_Testimonials();
+        $date = date('Y-m-d', time());
+        $tenant = $tenants->fetchRow(
+            $tenants->select()
+                ->where('username = ?', $_SESSION['login_user'])
+            );
+
+        if (isset($_POST["submit"])) {
+            $content = $_POST["testimonial"];
+            $testimonials->addTestimonial($content, $tenant['tenant_ss'], $date);
+        }
     }
 
 
 }
-
-

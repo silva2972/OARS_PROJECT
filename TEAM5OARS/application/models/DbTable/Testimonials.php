@@ -15,7 +15,7 @@ class Application_Model_DbTable_Testimonials extends Zend_Db_Table_Abstract
         return $row->toArray();
     }
 
-    public function addTestimonial($testimonial_content, $tenant_ss) {
+    public function addTestimonial($testimonial_content, $tenant_ss, $testimonial_date) {
         $data = array(
             'testimonial_date' => $testimonial_date,
             'testimonial_content' => $testimonial_content,
