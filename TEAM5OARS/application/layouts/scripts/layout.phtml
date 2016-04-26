@@ -27,9 +27,10 @@ echo $this->doctype(); ?>
 
 
                    <li class="dropdown">
-                       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Manager) <b class="caret"></b></a>
+                       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Manager<b class="caret"></b></a>
                        <ul class="dropdown-menu">
-                           <li><a href="#">Homepage</a></li>
+                         <li><a href="<?php echo $this->baseURL();?>/">Login - todo</a></li>
+                         <li><a href="<?php echo $this->baseURL();?>/ManagerIntro">Homepage - todo</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/VacantApartmentList">Vacant Apartment List</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/AutoMakeCount">Automobile Make Count</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/RentalLeases">Rental Lease Lengths</a></li>
@@ -38,9 +39,11 @@ echo $this->doctype(); ?>
                    </li>
 
                    <li class="dropdown">
-                       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Supervisor) <b class="caret"></b></a>
+                       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Supervisor<b class="caret"></b></a>
                        <ul class="dropdown-menu">
-                           <li><a href="#">Homepage</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/SupervisorIntro">Homepage - todo</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/">Login - todo</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/SupervisorIntro">Homepage - todo</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/Complaints">Pending Apartment Complaints</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/StaffRentalSummary">Staff Rental Summary</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/StaffApartmentDetails">Staff Apartment Details</a></li>
@@ -48,7 +51,7 @@ echo $this->doctype(); ?>
                         </ul>
                    </li>
 
-                   <li><a href="<?php echo $this->baseURL();?>/CreateRental">Create Rental</a></li>
+                   <li><a href="<?php echo $this->baseURL();?>/CreateRental">Create Rental - todo</a></li>
 
 
                     <li class="dropdown">
