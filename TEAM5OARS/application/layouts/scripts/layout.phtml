@@ -29,36 +29,53 @@ echo $this->doctype(); ?>
                    <li class="dropdown">
                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Manager<b class="caret"></b></a>
                        <ul class="dropdown-menu">
-                         <li><a href="<?php echo $this->baseURL();?>/">Login - todo</a></li>
+                         <li><a href="<?php echo $this->baseURL();?>/staffaccount">Login</a></li>
                          <li><a href="<?php echo $this->baseURL();?>/ManagerIntro">Homepage - todo</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/VacantApartmentList">Vacant Apartment List</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/AutoMakeCount">Automobile Make Count</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/RentalLeases">Rental Lease Lengths</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/RentCollected">Rent Collected</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/TenantList">Tenant List</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/PaymentList">Payment List</a></li>
+
                         </ul>
                    </li>
 
                    <li class="dropdown">
                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Supervisor<b class="caret"></b></a>
                        <ul class="dropdown-menu">
-                           <li><a href="<?php echo $this->baseURL();?>/SupervisorIntro">Homepage - todo</a></li>
-                           <li><a href="<?php echo $this->baseURL();?>/">Login - todo</a></li>
+                         <li><a href="<?php echo $this->baseURL();?>/staffaccount">Login</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/SupervisorIntro">Homepage - todo</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/Complaints">Pending Apartment Complaints</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/StaffRentalSummary">Staff Rental Summary</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/StaffApartmentDetails">Staff Apartment Details</a></li>
-                           <li><a href="<?php echo $this->baseURL();?>/">Update Pending Complaint - TODO</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/TenantList">Tenant List</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/PaymentList">Payment List</a></li>
+
                         </ul>
                    </li>
 
-                   <li><a href="<?php echo $this->baseURL();?>/CreateRental">Create Rental - todo</a></li>
+
+                   <li class="dropdown">
+                       <a href="#" data-toggle="dropdown" class="dropdown-toggle">Assistant<b class="caret"></b></a>
+                       <ul class="dropdown-menu">
+                           <li><a href="<?php echo $this->baseURL();?>/staffaccount">Login</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/AssistantIntro">Homepage - todo</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/TenantList">Tenant List</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/PaymentList">Payment List</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/CreateRental">Create Rental</a></li>
+
+                        </ul>
+                   </li>
+
 
 
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Log In (Customer Service) <b class="caret"></b></a>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Customer Service <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?php echo $this->baseURL();?>/">Tenant List - todo</a></li>
-                            <li><a href="<?php echo $this->baseURL();?>/">Payment List - todo</a></li>
+                            <li><a href="<?php echo $this->baseURL();?>/staffaccount">Login</a></li>
+                            <li><a href="<?php echo $this->baseURL();?>/TenantList">Tenant List</a></li>
+                            <li><a href="<?php echo $this->baseURL();?>/PaymentList">Payment List - todo</a></li>
 
                         </ul>
                     </li>
