@@ -10,7 +10,14 @@ class Application_Model_DbTable_TenantAuto extends Zend_Db_Table_Abstract
     private $auto_model;
     private $auto_year;
     private $auto_color;
-
+    function getMakeCount(){
+        $select = $this->select();
+        $select->from($this, array('auto_make','makeCount' =>'COUNT(*)'));
+        $select->group('auto_make');
+        $row = $this->fetchAll($select);
+        return $row;
+    }
+    /*->group('auto_make', 'system_role')*/
     public function getLicenseNo() { return $license_no; }
     public function setLicense_No($license_no) { $this->license_no = $license_no; }
     public function getAuto_Make() { return $auto_make; }

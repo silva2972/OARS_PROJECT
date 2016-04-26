@@ -10,21 +10,12 @@
 <div class="bs-example" data-example-id="striped-table"> <table class="table table-striped">
   <thead> <tr>
 <th>Apt Number</th>
-<th>Auto Make</th>
-<th>Length of Lease</th>
-<th>Rent Amout</th>
+<th>Type</th>
+<th>Deposit Amount</th>
+<th>Rent Amount</th>
 
  </tr> </thead>
- <tbody> <tr>
-   <!-- <?php foreach($this->testimonials as $testimonial) : ?> -->
-   <tr>
-<!-- uncomment the php foreach starting and ending tags and replace the below php statement with ones from your table -->
-     <th scope="row"><?php echo $this->escape($testimonial->tenant_name);?></th>
-		             <td><?php echo $this->escape($testimonial->testimonial_date);?></td>
-								 <td><?php echo $this->escape($testimonial->testimonial_content);?></td>
-
-							 </tr>
-     <!-- <?php endforeach; ?> -->
+ <tbody> <?php echo $this->vacantList; ?>
         </tbody> </table> </div>
 
 

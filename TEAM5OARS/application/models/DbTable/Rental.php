@@ -13,7 +13,10 @@ class Application_Model_DbTable_Rental extends Zend_Db_Table_Abstract
     private $lease_start;
     private $lease_end;
     private $renewal_date;
-    
+    public function getLeaseList(){
+        $row = $this->fetchAll($this->select()->where('rental_status = ?', 'O'));
+        return $row;
+    }
     public function getRental_No() { return $rental_no; }
     public function setRental_No($rental_no) { $this->rental_no = $rental_no; }
     public function getRental_Date() { return $rental_date; }

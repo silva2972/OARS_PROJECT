@@ -21,7 +21,11 @@ class Application_Model_DbTable_Apartment extends Zend_Db_Table_Abstract
         }
         return $row->toArray();
     }
-
+    public function getVacantApartments(){
+        $row = $this->fetchAll($this->select()->where('apt_status = ?', 'V'));
+        return $row;
+        
+    }
     public function getApt_No() { return $apt_no; }
     public function setApt_No($apt_no) { $this->apt_no = $apt_no; }
     public function getAptType() { return $apt_type; }

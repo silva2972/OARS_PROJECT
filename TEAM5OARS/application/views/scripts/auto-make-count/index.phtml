@@ -13,15 +13,7 @@
 <th>Count</th>
 
  </tr> </thead>
- <tbody> <tr>
-   <!-- <?php foreach($this->testimonials as $testimonial) : ?> -->
-   <tr>
-<!-- uncomment the php foreach starting and ending tags and replace the below php statement with ones from your table -->
-     <th scope="row"><?php echo $this->escape($testimonial->tenant_name);?></th>
-		        		 <td><?php echo $this->escape($testimonial->testimonial_content);?></td>
-
-							 </tr>
-     <!-- <?php endforeach; ?> -->
+ <tbody> <?php echo $this->makeList; ?>
         </tbody> </table> </div>
 
 
