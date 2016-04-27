@@ -36,7 +36,7 @@ class ComplaintsController extends Zend_Controller_Action
     public function indexAction()
     {
         if (!$this->isSupervisor) {
-            header("location: " . $this->view->baseURL());
+            header("location: " . $this->view->baseURL() . "/staffaccount");
             exit();
         }
 
