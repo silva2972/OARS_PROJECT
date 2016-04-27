@@ -8,11 +8,30 @@ class Application_Model_DbTable_RentalInvoice extends Zend_Db_Table_Abstract
     function getRentCollected(){
         $select = $this->select();
         $select->from($this, array('year' => 'Year(invoice_date)', 'month' => 'Month(invoice_date)','rentCollected' =>'SUM(CC_AMT)'));
-        $select->where('invoice_date BETWEEN DATE(NOW()) - INTERVAL (DAY(NOW()) - 1) DAY - INTERVAL 999 MONTH AND NOW()');
+        $select->where('invoice_date BETWEEN DATE(NOW()) - INTERVAL (DAY(NOW()) - 1) DAY - INTERVAL 9999 MONTH AND NOW()');
         $select->group(array('Year(invoice_date)', 'Month(invoice_date)'));
         $select->order(array('Year(invoice_date)', 'Month(invoice_date)'));
         $row = $this->fetchAll($select);
         return $row;
+    }
+    function submitPayment($date, $due, $creditNo, $cType, $cdate, $creditAmt, $r_no){
+        $select = $this->select();
+        $select->from($this, array('nextNo' => 'max(invoice_no)'));
+        $result = $this->fetchRow($select);
+        $nextIncrement = $result['nextNo'] + 1;
+        $newRow = $this->createRow();
+        $newRow->invoice_no = $nextIncrement;
+        $newRow->invoice_date = $date;
+        $newRow->invoice_due = $due;
+        $newRow->cc_no = $creditNo;
+        $newRow->cc_type = $cType;
+        $newRow->cc_exp_date = $cdate;
+        $newRow->cc_amt = $creditAmt;
+        $newRow->rental_no = $r_no;
+        
+        $newRow->save();
+
+        return $nextIncrement;
     }
     public function Rental_Invoice()
     {
