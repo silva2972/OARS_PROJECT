@@ -4,7 +4,7 @@ require(dirname(__DIR__) . "/models/StaffAccountMapper.php");
 class CreateRentalController extends Zend_Controller_Action
 {
 
-public function indexAction()
+    public function indexAction()
     {
         session_start();
         $this->_aM = new StaffAccountMapper();
@@ -33,5 +33,20 @@ public function indexAction()
         }
     }
 
+    public function inputAction()
+    {
+        // action body
+    }
+
+    public function recieptAction()
+    {
+        // action body
+    }
+
+
 }
+
+
+
+
 
