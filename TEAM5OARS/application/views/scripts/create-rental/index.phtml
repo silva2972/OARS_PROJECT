@@ -1,13 +1,76 @@
-
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
 <body>
+    <div class="container">
+        <h1>TEAM5OARS</h1>
+        <h3>Create Rental: Choose Apartment Type</h3><br>
+        <div class="col-md-8">
+            <br>
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Apt No</th>
+                        <th>Apt Type</th>
+                        <th>Deposit Amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <!-- you can do a loop here with the first <tr> tag -->
+                    <tr>
+                        <td>1</td>
+                        <td>Studio</td>
+                        <td>$300</td>
+                        <td><label><input checked name="optionsRadios" type=
+                        "radio" value="1"></label></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>1 Bedroom</td>
+                        <td>$500</td>
+                        <td><label><input checked name="optionsRadios" type=
+                        "radio" value="2"></label></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+              <br>
+  <div class="col-md-6"></div>
+  <div class="col-md-6">  <button class="btn btn-default" type="submit">Next Step</button><br> </div>
 
-<div class="container">
-  <h1>TEAM5OARS</h1>
-  <h3>Create Rental - Assitant Home page</h3>
-
-  <p><?php echo $this->LoggedInView?></p>
-  <p><?php echo $this->role?></p>
 </div>
-
+</div>
+        <div class="col-md-4">
+            <table class="table">
+                <thead class="thead-inverse">
+                    <tr>
+                        <th>Apartment</th>
+                        <th>Rental Rates</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Studio</td>
+                        <td>$300</td>
+                    </tr>
+                    <tr>
+                        <td>1 Bedroom</td>
+                        <td>$400</td>
+                    </tr>
+                    <tr>
+                        <td>2 Bedroom</td>
+                        <td>$500</td>
+                    </tr>
+                    <tr>
+                        <td>3 Bedroom</td>
+                        <td>$700</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
+</html>
