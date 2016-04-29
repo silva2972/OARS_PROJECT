@@ -10,6 +10,7 @@ class CreateRentalController extends Zend_Controller_Action
     protected $isAssistant = false;
 
     protected $apt_no;
+    protected $rental_no;
 
     public function init() {
         // Login stuff
@@ -75,6 +76,25 @@ class CreateRentalController extends Zend_Controller_Action
         if (!$this->isAssistant) {
             header("location: " . $this->view->baseURL(). "/staffaccount");
         }
+
+        // take form data in
+        if (isset($_POST["update"])) {
+            $name = $_POST["name"];
+            $gender = $_POST["gender"];
+            $tenant_ss = $_POST["ss"];
+            $dob = $_POST["dob"];
+            $home = $_POST["homePhone"];
+            $work = $_POST["workPhone"];
+            $employer = $_POST["employerName"];
+            $marital = $_POST["marital"];
+            $username = $_POST["username"];
+            $password = $_POST["password"];
+
+            var_dump(array($name, $gender, $tenant_ss, $dob, $home, $work, $employer, $marital, $username, $password));
+        }
+
+        // send out reciept info
+
     }
 
 

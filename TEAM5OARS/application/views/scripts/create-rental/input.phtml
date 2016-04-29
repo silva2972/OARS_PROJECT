@@ -1,144 +1,154 @@
 
 <body>
 
-<div class="container">
-  <h1>TEAM5OARS</h1>
-  <h3>Create Rental</h3>
+    <div class="container">
+        <h1>TEAM5OARS</h1>
+        <h3>Create Rental</h3>
 
-  <br>
-
-
-
-
-
-<div class="col-md-8"  ><BR>
+        <br>
 
 
 
 
 
-
-  <form class="form-horizontal">
-
-
-      <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">Tenant Name</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="tenantName">
-        </div>
-      </div>
-
-
-			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-2 control-label">Gender</label>
-				<div class="col-sm-10">
-					<select class="c-select">
-								<option selected></option>
-								<option value="M">Male</option>
-								<option value="F">Female</option>
-							</select>
-				</div>
-			</div>
-
-  <div class="form-group">
-    <label for="inputName" class="col-sm-2 control-label">Tenant SS</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="tenantSS">
-    </div>
-  </div>
-
-	<div class="form-group">
-		<label for="inputEmail3" class="col-sm-2 control-label">Tenant DOB</label>
-		<div class="col-sm-10">
-			<input type="date" class="form-control" name="edate" id="tenantDOB" required>
-		</div>
-	</div>
-
-
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Apartment Number</label>
-    <div class="col-sm-1">
-      <label for="inputEmail3" class="col-sm-2 control-label">
-          <?php echo $this->apartment->apt_no; ?>
-      </label>
-
-    </div>
-  </div>
-
-
-    <div class="form-group">
-      <label for="inputEmail3" class="col-sm-2 control-label">Aparment Type</label>
-      <div class="col-sm-1">
-        <label for="inputEmail3" class="col-sm-2 control-label">
-            <?php
-            if ($this->apartment->apt_type == 0) {
-                echo "Studio";
-            } else {
-                echo $this->apartment->apt_type . " Bedroom";
-            }
-            ?>
-        </label>
-  </div>
-    </div>
+        <div class="col-md-8"  ><BR>
 
 
 
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">Deposit</label>
-          <div class="col-sm-1">
-        <label for="inputEmail3" class="col-sm-2 control-label">
-            <?php echo "$" . $this->apartment->apt_deposit_amt; ?>
-        </label>
+            <form class="form-horizontal" action="<?php echo $this->baseURL(); ?>/createRental/reciept" method="POST">
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tenant Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="tenantName" name="name" required>
+                    </div>
                 </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Gender</label>
+                    <div class="col-sm-10">
+                        <select class="c-select" name="gender">
+                            <option selected></option>
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Tenant SS</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name ="ss" id="tenantSS" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tenant DOB</label>
+                    <div class="col-sm-10">
+                        <input type="date" class="form-control" name="dob" id="tenantDOB" required>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Apartment Number</label>
+                    <div class="col-sm-1">
+                        <label for="inputEmail3" class="col-sm-2 control-label">
+                            <?php echo $this->apartment->apt_no; ?>
+                        </label>
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Aparment Type</label>
+                    <div class="col-sm-1">
+                        <label for="inputEmail3" class="col-sm-2 control-label">
+                            <?php
+                            if ($this->apartment->apt_type == 0) {
+                                echo "Studio";
+                            } else {
+                                echo $this->apartment->apt_type . " Bedroom";
+                            }
+                            ?>
+                        </label>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Deposit</label>
+                    <div class="col-sm-1">
+                        <label for="inputEmail3" class="col-sm-2 control-label">
+                            <?php echo "$" . $this->apartment->apt_deposit_amt; ?>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tenant Home Phone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="homePhone" id="tenantHomePhone">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tenant Work Phone</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="workPhone" id="tenantWorkPhone">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Employer Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="employerName" id="employerName">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Marital Status</label>
+                    <div class="col-sm-10">
+                        <select class="c-select" name="marital">
+                            <option selected></option>
+                            <option value="M">Married</option>
+                            <option value="S">Single</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="username" id="employerName">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" name="password" id="employerName">
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="reset" value="clear" class="btn btn-default">Clear</button>
+
+                        <button type="submit" name="update" class="btn btn-default">Create Rental</button>
+                    </div>
+                </div>
+
+                <br><br><br><hr>
+            </form>
         </div>
-
-				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">Tenant Home Phone</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" id="tenantHomePhone">
-					</div>
-				</div>
-
-
-				<div class="form-group">
-		      <label for="inputEmail3" class="col-sm-2 control-label">Tenant Work Phone</label>
-		      <div class="col-sm-10">
-		        <input type="text" class="form-control" id="tenantWorkPhone">
-		      </div>
-		    </div>
-
-
-				<div class="form-group">
-		      <label for="inputEmail3" class="col-sm-2 control-label">Employer Name</label>
-		      <div class="col-sm-10">
-		        <input type="text" class="form-control" id="employerName">
-		      </div>
-		    </div>
-
-				<div class="form-group">
-		      <label for="inputEmail3" class="col-sm-2 control-label">Marital Status</label>
-		      <div class="col-sm-10">
-						<select class="c-select">
-								  <option selected></option>
-								  <option value="M">Married</option>
-								  <option value="S">Single</option>
-								</select>
-		      </div>
-		    </div>
-
-
-
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="reset" value="clear" class="btn btn-default">Clear</button>
-
-      <button type="submit" class="btn btn-default">Create Rental</button>
     </div>
-  </div>
-
-<br><br><br><hr>
-  </form>
-</div>
-</div>
 </body>

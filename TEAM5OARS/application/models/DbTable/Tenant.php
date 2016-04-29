@@ -17,11 +17,28 @@ class Application_Model_DbTable_Tenant extends Zend_Db_Table_Abstract
         $row = $this->fetchrow($this->select()->where("username = ?", $user));
         return $row["tenant_name"];
     }
-    
+
     function GrabAccountID($user)
     {
         $row = $this->fetchrow($this->select()->where("username = ?", $user));
         return $row["tenant_ss"];
+    }
+
+    public function addTenant($ss, $name, $dob, $marital, $work, $home, $employer, $gender, $username, $passowrd, $rental) {
+        $data = array(
+            'tenant_ss' => $ss,
+            'tenant_name' => $name,
+            'tenant_dob' => $dob,
+            'marital' => $marital,
+            'work_phone' => $work,
+            'home_phone' => $home,
+            'employer_name' => $employer,
+            'gender' => $gender,
+            'username' => $username,
+            'password' => $password,
+            'rental_no' => $rental
+        );
+        $this->insert($data);
     }
 
     public function getTenant_SS()
@@ -100,9 +117,8 @@ class Application_Model_DbTable_Tenant extends Zend_Db_Table_Abstract
     }
     public function setPassword()
     {
-        
+
     }
 
 
 }
-

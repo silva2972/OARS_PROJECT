@@ -17,6 +17,21 @@ class Application_Model_DbTable_Rental extends Zend_Db_Table_Abstract
         $row = $this->fetchAll($this->select()->where('rental_status = ?', 'O'));
         return $row;
     }
+    public function addRental($no, $date, $status, $cancel, $lease_type, $lease_start, $lease_end, $renewal, $staff, $apt) {
+        $data = array(
+            'rental_no' => $no,
+            'rental_date' => $date,
+            'rental_status' => $status,
+            'cancel_date' => $cancel,
+            'lease_type' => $lease_type,
+            'lease_start' => $lease_start,
+            'lease_end' => $lease_end,
+            'renewal_date' => $renewal,
+            'staff_no' => $staff,
+            'apt_no' => $apt
+        );
+        $this->insert($data);
+    }
     public function getRental_No() { return $rental_no; }
     public function setRental_No($rental_no) { $this->rental_no = $rental_no; }
     public function getRental_Date() { return $rental_date; }
@@ -34,4 +49,3 @@ class Application_Model_DbTable_Rental extends Zend_Db_Table_Abstract
     public function getRenewal_Date() { return $renewal_date; }
     public function setRenewal_Date($renewal_date) { $this->renewal_date = $renewal_date; }
 }
-
