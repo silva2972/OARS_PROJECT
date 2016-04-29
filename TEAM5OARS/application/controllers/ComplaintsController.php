@@ -62,7 +62,7 @@ class ComplaintsController extends Zend_Controller_Action
     public function addAction()
     {
         if (!$this->isTenant) {
-            header("location: " . $this->view->baseURL() . "/index");
+            header("location: " . $this->view->baseURL() . "/tenantaccount");
             exit();
         }
         $complaints = new Application_Model_DbTable_Complaints();

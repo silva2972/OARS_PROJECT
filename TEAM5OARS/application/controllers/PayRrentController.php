@@ -24,12 +24,12 @@ class PayRrentController extends Zend_Controller_Action
     public function indexAction()
     {
         session_start();
-        
+
         $loggedIn = $this->_aM->LoggedIn();
         $this->username = $_SESSION['login_user'];
         if (!$loggedIn)
         {
-            header("location: " . $this->view->baseURL() . "/index");
+            header("location: " . $this->view->baseURL() . "/tenantaccount");
             exit();
         }
         $tenants = new Application_Model_DbTable_Tenant();
@@ -58,10 +58,10 @@ class PayRrentController extends Zend_Controller_Action
             $this->due = 500;
         else if($type == 3)
             $this->due = 600;
-        
+
         $this->view->rental_number = $this->r_no;
         $this->view->due = $this->due;
-        
+
         if (isset($_POST['submit'])){
             $this->view->test = 'yesssssss';
             $this->creditNo = $_POST["ccnumber"];
@@ -103,8 +103,5 @@ class PayRrentController extends Zend_Controller_Action
         $this->view->InvoiceDate = $this->getRequest()->getParam('invoice_date');
         $this->view->Paid = $this->getRequest()->getParam('amt');
     }
-    
+
 }
-
-
-

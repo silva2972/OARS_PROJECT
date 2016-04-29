@@ -4,7 +4,7 @@ require_once 'Zend/Controller/Action.php';
 require(dirname(__DIR__) . "/models/TenantAccountMapper.php");
 class TenantIntroController extends Zend_Controller_Action
 {
-    
+
     public function indexAction()
     {
         session_start();
@@ -17,7 +17,7 @@ class TenantIntroController extends Zend_Controller_Action
         //If not logged in we can't view this page
         if (!$loggedIn)
         {
-            header("location: " . $this->view->baseURL() . "/index");
+            header("location: " . $this->view->baseURL() . "/tenantaccount");
             exit();
         }
 
@@ -39,11 +39,11 @@ class TenantIntroController extends Zend_Controller_Action
                 $tenants_family->select()
                 ->where('tenant_ss = ?', $tenantss)
                 );
-            
+
             $this->view->tenant_info = $tenant_info;
             $this->view->tenant_auto = $tenant_autos;
             $this->view->tenant_family = $tenant_family;
-            
+
         }
         else
         {

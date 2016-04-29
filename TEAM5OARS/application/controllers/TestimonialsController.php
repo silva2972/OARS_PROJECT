@@ -5,12 +5,13 @@ require(dirname(__DIR__) . "/models/TenantAccountMapper.php");
 
 class TestimonialsController extends Zend_Controller_Action
 {
+    protected $isTenant = false;
 
     public function init()
     {
         session_start();
-
-        //If not logged in we can't view this page
+        $this->_aM = new TenantAccountMapper();
+        $this->isTenant = $this->_aM->LoggedIn();
 
     }
 
@@ -30,14 +31,11 @@ class TestimonialsController extends Zend_Controller_Action
 
     public function addAction()
     {
-        $this->_aM = new TenantAccountMapper();
-        $loggedIn = $this->_aM->LoggedIn();
-        $username = $_SESSION['login_user'];
-        if (!$loggedIn)
-        {
-            header("location: " . $this->view->baseURL() . "/index");
-            exit();
+        if (!$this->isTenant) {
+            header("location: " . $this->view->baseURL() . "/tenantaccount");
+
         }
+
         $tenants = new Application_Model_DbTable_Tenant();
         $testimonials = new Application_Model_DbTable_Testimonials();
         $date = date('Y-m-d', time());

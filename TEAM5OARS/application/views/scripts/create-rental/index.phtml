@@ -19,58 +19,70 @@
                     </tr>
                 </thead>
                 <tbody>
-                  <!-- you can do a loop here with the first <tr> tag -->
-                    <tr>
-                        <td>1</td>
-                        <td>Studio</td>
-                        <td>$300</td>
-                        <td><label><input checked name="optionsRadios" type=
-                        "radio" value="1"></label></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>1 Bedroom</td>
-                        <td>$500</td>
-                        <td><label><input checked name="optionsRadios" type=
-                        "radio" value="2"></label></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="row">
-              <br>
-  <div class="col-md-6"></div>
-  <div class="col-md-6">  <button class="btn btn-default" type="submit">Next Step</button><br> </div>
+                    <form action="<?php echo $this->baseURL(); ?>/create-rental/input" method="POST">                    
+                        <?php
+                        foreach($this->vacantList as $vacant) {
+                            // figure out string for Apt type
+                            if ($vacant->apt_type == 0) {
+                                $type = 'Studio';
+                            } else {
+                                $type = $vacant->apt_type . ' Bedroom';
+                            }
+                            ?>
+                            <tr>
+                                <td><?php echo $this->escape($vacant->apt_no); ?></td>
+                                <td><?php echo $type; ?></td>
+                                <td><?php echo '$' . $this->escape($vacant->apt_deposit_amt); ?></td>
+                                <td>
+                                    <label>
 
-</div>
-</div>
-        <div class="col-md-4">
-            <table class="table">
-                <thead class="thead-inverse">
-                    <tr>
-                        <th>Apartment</th>
-                        <th>Rental Rates</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Studio</td>
-                        <td>$300</td>
-                    </tr>
-                    <tr>
-                        <td>1 Bedroom</td>
-                        <td>$400</td>
-                    </tr>
-                    <tr>
-                        <td>2 Bedroom</td>
-                        <td>$500</td>
-                    </tr>
-                    <tr>
-                        <td>3 Bedroom</td>
-                        <td>$700</td>
-                    </tr>
-                </tbody>
-            </table>
+                                        <input type="radio" name="optionsRadios" value="<?php echo $vacant->apt_no; ?>"/>
+
+                                    </label>
+                                </td>
+                            </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <br>
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <!-- <button class="btn btn-default" type="submit" name="input">Next Step</button><br> -->
+                            <input type="submit" name="update" value="Next Step" class="btn btn-default"/>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <table class="table">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>Apartment</th>
+                            <th>Rental Rates</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Studio</td>
+                            <td>$300</td>
+                        </tr>
+                        <tr>
+                            <td>1 Bedroom</td>
+                            <td>$400</td>
+                        </tr>
+                        <tr>
+                            <td>2 Bedroom</td>
+                            <td>$500</td>
+                        </tr>
+                        <tr>
+                            <td>3 Bedroom</td>
+                            <td>$700</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</body>
-</html>
+    </body>
+    </html>

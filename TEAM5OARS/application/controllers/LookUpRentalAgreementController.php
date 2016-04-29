@@ -17,10 +17,10 @@ class LookUpRentalAgreementController extends Zend_Controller_Action
         $rentals = new Application_Model_DbTable_Rental();
         $apartments = new Application_Model_DbTable_Apartment();
         $loggedIn = $this->_aM->LoggedIn();
-        
+
         if (!$loggedIn)
         {
-            header("location: " . $this->view->baseURL() . "/index");
+            header("location: " . $this->view->baseURL() . "/tenantaccount");
             exit();
         }
         if ($loggedIn)

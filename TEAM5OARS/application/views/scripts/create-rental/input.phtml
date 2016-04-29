@@ -56,9 +56,11 @@
 
 
   <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Aparment Number</label>
+    <label for="inputEmail3" class="col-sm-2 control-label">Apartment Number</label>
     <div class="col-sm-1">
-      <label for="inputEmail3" class="col-sm-2 control-label">1</label>
+      <label for="inputEmail3" class="col-sm-2 control-label">
+          <?php echo $this->apartment->apt_no; ?>
+      </label>
 
     </div>
   </div>
@@ -67,7 +69,15 @@
     <div class="form-group">
       <label for="inputEmail3" class="col-sm-2 control-label">Aparment Type</label>
       <div class="col-sm-1">
-        <label for="inputEmail3" class="col-sm-2 control-label">Studio</label>
+        <label for="inputEmail3" class="col-sm-2 control-label">
+            <?php
+            if ($this->apartment->apt_type == 0) {
+                echo "Studio";
+            } else {
+                echo $this->apartment->apt_type . " Bedroom";
+            }
+            ?>
+        </label>
   </div>
     </div>
 
@@ -76,7 +86,9 @@
         <div class="form-group">
           <label for="inputEmail3" class="col-sm-2 control-label">Deposit</label>
           <div class="col-sm-1">
-        <label for="inputEmail3" class="col-sm-2 control-label">$324</label>
+        <label for="inputEmail3" class="col-sm-2 control-label">
+            <?php echo "$" . $this->apartment->apt_deposit_amt; ?>
+        </label>
                 </div>
         </div>
 
