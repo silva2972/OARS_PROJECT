@@ -18,36 +18,37 @@
   <tbody>
 		<tr>
       <th>Tenant Name</th>
-      <td>Jimmy Johsn</td>
+      <td><?php echo $this->tenant->tenant_name; ?></td>
     </tr>
 		<tr>
       <th>Tenant info</th>
-			<td><b>DOB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>04/20/2016<br>
-	  			<b>Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>Male<br>
-		  		<b>Marital Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>Single and ready to mingle<br>
-			  	<b>Work Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>713-132-3213<br>
-					<b>Home Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>713-432-3213<br>
+			<td><b>DOB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><?php echo $this->tenant->tenant_dob; ?><br>
+	  			<b>Gender&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><?php echo $this->tenant->gender; ?><br>
+		  		<b>Marital Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><?php echo $this->tenant->marital; ?><br>
+			  	<b>Work Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><?php echo $this->tenant->work_phone; ?><br>
+					<b>Home Phone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><?php echo $this->tenant->home_phone; ?><br>
 
 			</td>
 	  </tr>
 		<tr>
       <th>Tenant Employer</th>
-      <td>Leiss & Co.</td>
+      <td><?php echo $this->tenant->employer_name; ?></td>
     </tr>
 
 		<tr>
       <th>Rental Deposit</th>
-      <td>$1738</td>
+      <td><?php echo $this->apt->apt_deposit_amt; ?></td>
     </tr>
 		<tr>
       <th>Rental Number</th>
-      <td>432 - (Studio)</td>
+      <td><?php echo $this->rental->rental_no; ?></td>
     </tr>
     <tr>
       <th>Rental Date</th>
-      <td>04/24/16</td>
+      <td><?php echo $this->rental->rental_date; ?></td>
     </tr>
     </tbody>
+
 
 </table>
 <center><h3>Please pay rental deposit immediately. Thank you!</h3></center>

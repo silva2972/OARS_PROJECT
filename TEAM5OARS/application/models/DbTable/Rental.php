@@ -17,9 +17,8 @@ class Application_Model_DbTable_Rental extends Zend_Db_Table_Abstract
         $row = $this->fetchAll($this->select()->where('rental_status = ?', 'O'));
         return $row;
     }
-    public function addRental($no, $date, $status, $cancel, $lease_type, $lease_start, $lease_end, $renewal, $staff, $apt) {
+    public function addRental($date, $status, $cancel, $lease_type, $lease_start, $lease_end, $renewal, $staff, $apt) {
         $data = array(
-            'rental_no' => $no,
             'rental_date' => $date,
             'rental_status' => $status,
             'cancel_date' => $cancel,

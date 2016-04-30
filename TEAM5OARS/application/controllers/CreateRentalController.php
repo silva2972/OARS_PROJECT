@@ -9,8 +9,8 @@ class CreateRentalController extends Zend_Controller_Action
     protected $username;
     protected $isAssistant = false;
 
-    protected $apt_no;
-    protected $rental_no;
+    protected $apt;
+    protected $rental;
 
     public function init() {
         // Login stuff
@@ -26,20 +26,6 @@ class CreateRentalController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // if ($this->isAssistant)
-        // {
-        //     $fname = $this->_aM->FirstName();
-        //     $lname = $this->_aM->LastName();
-        //     $this->view->LoggedInView = "Welcome " . $fname . " " . $lname . " | <a href=" . $this->view->baseURL() . "/tenantaccount/logout>Logout</a>";
-        //     $this->view->role = $_SESSION['user_type'];
-        //
-        // }
-        // else
-        // {
-        //     $this->view->LoggedInView = "<a href=" . $this->view->baseURL() . "/account>Login | Register</a>";
-        //     $this->view->NavbarExtra = "";
-        // }
-
         // check for permissions...
         if (!$this->isAssistant) {
             header("location: " . $this->view->baseURL(). "/staffaccount");
@@ -59,14 +45,18 @@ class CreateRentalController extends Zend_Controller_Action
         if (!$this->isAssistant) {
             header("location: " . $this->view->baseURL(). "/staffaccount");
         }
+
+        // get stuff
         if (isset($_POST["update"])) {
-            $apt = ($_POST["optionsRadios"]);
+            $aptChoice = ($_POST["optionsRadios"]);
             $apartments = new Application_Model_DbTable_Apartment();
-            $apt = $apartments->fetchRow(
+            $this->apt = $apartments->fetchRow(
                 $apartments->select()
-                ->where('apt_no = ?', $apt)
+                ->where('apt_no = ?', $aptChoice)
             );
-            $this->view->apartment = $apt;
+
+            // pass it in
+            $this->view->apartment = $this->apt;
         }
     }
 
@@ -89,13 +79,64 @@ class CreateRentalController extends Zend_Controller_Action
             $marital = $_POST["marital"];
             $username = $_POST["username"];
             $password = $_POST["password"];
+            $lease = $_POST["optionsRadios"];
+            $apt_no = $_POST["apt_no"];
 
-            var_dump(array($name, $gender, $tenant_ss, $dob, $home, $work, $employer, $marital, $username, $password));
+            // get all the tables we need
+            $tenants = new Application_Model_DbTable_Tenant();
+            $rentals = new Application_Model_DbTable_Rental();
+            $apartments = new Application_Model_DbTable_Apartment();
+            $staff = new Application_Model_DbTable_Staff();
+
+            // fetch appropriate rows from tables
+            $staff = $staff->fetchRow(
+                    $staff->select()
+                    ->where('username = ?', $this->username)
+                );
+            $this->apt = $apartments->fetchRow(
+                    $apartments->select()
+                    ->where('apt_no = ?', $apt_no)
+                );
+
+            // set apartment to no longer vacant
+            $data = array (
+                'apt_status' => 'R'
+            );
+            $apartments->update($data, 'apt_no = ' . (int)$apt_no);
+
+            // get all the dates
+            $date = date('Y-m-d', time());
+            $cancel = date('Y-m-d', strtotime('last day of next month', time()));
+            $lease_start = date('Y-m-d', strtotime('first day of next month', time()));
+            if ($lease == "One") {
+                $lease_end = strtotime($date . ' + 12 months');
+            } else {
+                $lease_end = strtotime($date . ' + 6 months');
+            }
+            $lease_end = date('Y-m-d', strtotime('last day of this month', $lease_end));
+            $renewal = strtotime($lease_end . ' - 2 months');
+            $renewal = date('Y-m-d', strtotime('first day of this month', $renewal));
+
+            // add row to rental
+            $rentals->addRental($date, 'O', $cancel, $lease, $lease_start, $lease_end, $renewal, $staff->staff_no, $this->apt->apt_no);
+            $this->rental = $rentals->fetchRow(
+                    $rentals->select()
+                    ->where('apt_no = ?', $this->apt->apt_no)
+                );
+
+            // add row to tenant
+            $tenants->addTenant($tenant_ss, $name, $dob, $marital, $work, $home, $employer, $gender, $username, $password, $this->rental->rental_no);
+            $tenant = $tenants->fetchRow(
+                    $tenants->select()
+                    ->where('tenant_ss = ?', $tenant_ss)
+                );
+
+            // pass stuff in
+            $this->view->tenant = $tenant;
+            $this->view->rental = $this->rental;
+            $this->view->apt = $this->apt;
         }
 
-        // send out reciept info
-
     }
-
 
 }

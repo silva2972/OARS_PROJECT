@@ -20,7 +20,6 @@ class AssistantIntroController extends Zend_Controller_Action
             $fname = $this->_aM->FirstName();
             $lname = $this->_aM->LastName();
             $this->view->LoggedInView = "Welcome Assistant: " . $fname . " " . $lname;
-            header("location: " . $this->view->baseURL() . "/staffaccount");
         }
     }
 

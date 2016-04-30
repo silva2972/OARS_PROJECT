@@ -24,7 +24,7 @@ class Application_Model_DbTable_Tenant extends Zend_Db_Table_Abstract
         return $row["tenant_ss"];
     }
 
-    public function addTenant($ss, $name, $dob, $marital, $work, $home, $employer, $gender, $username, $passowrd, $rental) {
+    public function addTenant($ss, $name, $dob, $marital, $work, $home, $employer, $gender, $username, $password, $rental) {
         $data = array(
             'tenant_ss' => $ss,
             'tenant_name' => $name,
