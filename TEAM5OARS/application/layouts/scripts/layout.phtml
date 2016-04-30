@@ -43,7 +43,7 @@ font-family: 'Open Sans', sans-serif;
                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Manager<b class="caret"></b></a>
                        <ul class="dropdown-menu">
                          <li><a href="<?php echo $this->baseURL();?>/staffaccount">Login</a></li>
-                         <li><a href="<?php echo $this->baseURL();?>/ManagerIntro">Homepage - todo</a></li>
+                         <li><a href="<?php echo $this->baseURL();?>/ManagerIntro">Homepage</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/VacantApartmentList">Vacant Apartment List</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/AutoMakeCount">Automobile Make Count</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/RentalLeases">Rental Lease Lengths</a></li>
@@ -58,7 +58,7 @@ font-family: 'Open Sans', sans-serif;
                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Supervisor<b class="caret"></b></a>
                        <ul class="dropdown-menu">
                          <li><a href="<?php echo $this->baseURL();?>/staffaccount">Login</a></li>
-                           <li><a href="<?php echo $this->baseURL();?>/SupervisorIntro">Homepage - todo</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/SupervisorIntro">Homepage</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/Complaints">Pending Apartment Complaints</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/StaffRentalSummary">Staff Rental Summary</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/StaffApartmentDetails">Staff Apartment Details</a></li>
@@ -73,7 +73,7 @@ font-family: 'Open Sans', sans-serif;
                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Assistant<b class="caret"></b></a>
                        <ul class="dropdown-menu">
                            <li><a href="<?php echo $this->baseURL();?>/staffaccount">Login</a></li>
-                           <li><a href="<?php echo $this->baseURL();?>/AssistantIntro">Homepage - todo</a></li>
+                           <li><a href="<?php echo $this->baseURL();?>/AssistantIntro">Homepage</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/TenantList">Tenant List</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/PaymentList">Payment List</a></li>
                            <li><a href="<?php echo $this->baseURL();?>/CreateRental">Create Rental</a></li>
@@ -88,7 +88,7 @@ font-family: 'Open Sans', sans-serif;
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo $this->baseURL();?>/staffaccount">Login</a></li>
                             <li><a href="<?php echo $this->baseURL();?>/TenantList">Tenant List</a></li>
-                            <li><a href="<?php echo $this->baseURL();?>/PaymentList">Payment List - todo</a></li>
+                            <li><a href="<?php echo $this->baseURL();?>/PaymentList">Payment List</a></li>
 
                         </ul>
                     </li>
@@ -97,9 +97,6 @@ font-family: 'Open Sans', sans-serif;
              <li class="dropdown">
                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Tenant<b class="caret"></b></a>
                  <ul class="dropdown-menu">
-                   <?  if($_session("user-type")=="tenant") { ?>
-                  you should only see this if you are logged in as tenant
-                    <?  } ?>
                    <li><a href="<?php echo $this->baseURL();?>/tenantaccount">Login</a></li>
                   <li><a href="<?php echo $this->baseURL();?>/tenantintro">Homepage</a></li>
                     <li><a href="<?php echo $this->baseURL();?>/LookUpRentalAgreement">Rental Agreement</a></li>
