@@ -17,6 +17,9 @@ class SupervisorIntroController extends Zend_Controller_Action
         if ($this->_aM->LoggedIn()) {
             $this->isManager = ($_SESSION['user_type'] == 'Supervisor');
             $this->username = $_SESSION['login_user'];
+            $fname = $this->_aM->FirstName();
+            $lname = $this->_aM->LastName();
+            $this->view->LoggedInView = "Welcome Supervisor: " . $fname . " " . $lname;
         } else {
             header("location: " . $this->view->baseURL() . "/staffaccount");
         }
