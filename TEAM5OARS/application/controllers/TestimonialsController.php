@@ -33,7 +33,7 @@ class TestimonialsController extends Zend_Controller_Action
     {
         if (!$this->isTenant) {
             header("location: " . $this->view->baseURL() . "/tenantaccount");
-
+            exit();
         }
 
         $tenants = new Application_Model_DbTable_Tenant();
