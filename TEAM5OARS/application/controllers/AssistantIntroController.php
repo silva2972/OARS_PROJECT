@@ -17,7 +17,9 @@ class AssistantIntroController extends Zend_Controller_Action
         if ($this->_aM->LoggedIn()) {
             $this->isAssistant = ($_SESSION['user_type'] == 'Assistant');
             $this->username = $_SESSION['login_user'];
-        } else {
+            $fname = $this->_aM->FirstName();
+            $lname = $this->_aM->LastName();
+            $this->view->LoggedInView = "Welcome Assistant: " . $fname . " " . $lname;
             header("location: " . $this->view->baseURL() . "/staffaccount");
         }
     }
