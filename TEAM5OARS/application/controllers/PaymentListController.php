@@ -24,14 +24,19 @@ class PaymentListController extends Zend_Controller_Action
         $r_Invoice = new Application_Model_DbTAble_RentalInvoice();
         
         if (isset($_POST['submit'])){
-            $a_no = $_POST["rentalNumber"];
+            $a_no = $_POST["aptNumber"];
             $rental = $rentals->fetchRow(
                 $rentals->select()
                 ->where('apt_no = ?',$a_no)
                 );
             $r_no = $rental['rental_no'];
-            $param = array('r_no' => $r_no);
-            $this->_forward('output','PaymentList', null, $param);
+            if($r_no != null) //coditition to check for valid input
+            {
+                $param = array('r_no' => $r_no);
+                $this->_forward('output','PaymentList', null, $param);
+            }
+            else 
+                $this->view->errorMessage = "Apartment not found";
         }
             
     }
