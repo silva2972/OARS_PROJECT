@@ -247,3 +247,43 @@ INSERT INTO testimonials VALUES
 (2, '2002-04-09', 'I think that this TEAM5OARS website can be improved!', '450452267'),
 (3, '2002-04-25', 'I believe that the Tenants and Visitors will like TEAM5OARS since they can rent and manage apartments online.', '173662690')
 ;
+
+-- Create Views
+
+CREATE OR REPLACE VIEW complaints_v AS
+SELECT
+    c.complaint_no,
+    c.apt_no,
+    a.apt_type,
+    c.apt_complaint
+FROM
+    complaints c
+        LEFT OUTER JOIN
+    apartment a ON c.apt_no = a.apt_no
+WHERE
+    c.status IS NULL AND
+    c.apt_no IS NOT NULL
+;
+
+CREATE OR REPLACE VIEW testimonials_v AS
+SELECT
+    testimonial_id,
+    testimonial_date,
+    testimonial_content,
+    tenant_name
+FROM
+    testimonials t
+        LEFT OUTER JOIN 
+    tenant tn ON t.tenant_ss = tn.tenant_ss
+;
+
+CREATE OR REPLACE VIEW tenant_v AS
+SELECT
+    t.tenant_ss,
+    t.tenant_name,
+    r.apt_no
+FROM
+    tenant AS t
+        LEFT OUTER JOIN 
+    rental AS r ON t.rental_no = r.rental_no
+;
