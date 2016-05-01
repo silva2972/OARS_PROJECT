@@ -39,7 +39,7 @@ DESC apartment;
 -- Creating a new rental table
 DROP TABLE IF EXISTS rental;
 CREATE TABLE rental
-	(rental_no INT NOT NULL,
+	(rental_no INT NOT NULL AUTO_INCREMENT,
 	rental_date DATE NOT NULL,
 	rental_status ENUM('O', 'S') NOT NULL,
 	cancel_date DATE,
@@ -104,7 +104,7 @@ DESC tenant_family;
 -- Creating a new rental_invoice table
 DROP TABLE IF EXISTS rental_invoice;    
 CREATE TABLE rental_invoice
-	(invoice_no INT NOT NULL,
+	(invoice_no INT NOT NULL AUTO_INCREMENT,
 	invoice_date DATE NOT NULL,
 	invoice_due INT NOT NULL,
 	cc_no CHAR(16) NOT NULL,
@@ -119,7 +119,7 @@ DESC rental_invoice;
 -- Creating a new complaints table
 DROP TABLE IF EXISTS complaints;
 CREATE TABLE complaints
-	(complaint_no INT NOT NULL,
+	(complaint_no INT NOT NULL AUTO_INCREMENT,
 	complaint_date DATE NOT NULL,
 	rental_complaint TEXT,
 	apt_complaint TEXT,
