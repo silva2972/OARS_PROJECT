@@ -59,7 +59,7 @@ class StaffAccountController extends Zend_Controller_Action {
                     elseif($role == 'Supervisor')
                         header("location: ../supervisorIntro");
                     elseif($role == 'Assistant')
-                        header("location: ../create-rental");
+                        header("location: ../assistantIntro");
                     else
                         header("location: ../customerServiceIntro");
                 }
@@ -78,76 +78,6 @@ class StaffAccountController extends Zend_Controller_Action {
         return $curlData;
     }
 
-/*
-    //UC Register
-    //Coded By: Chad Van Roekel, Jared Jones
-    //Date Created: 04/22/2015
-    //Date Approved: 04/27/2015
-    //Approved By: Linh Ty, Marden Benoit
-    public function registerAction() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            if (!empty($_POST) && isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["email"]) && isset($_POST["uname"]) && isset($_POST["pword"]) && isset($_POST["confirmpass"])) {
-                $fname = $_POST["fname"];
-                $lname = $_POST["lname"];
-                $email = $_POST["email"];
-                $uname = $_POST["uname"];
-                $pword = $_POST["pword"];
-                $confirmpass = $_POST["confirmpass"];
-                $institution = $_POST["institution"];
-
-                $recaptcha = $_POST['g-recaptcha-response'];
-                $google_url = "https://www.google.com/recaptcha/api/siteverify";
-                $secret = '6LcQ8gUTAAAAACC1xEZrhMdTA_1Jzq-3sF65Znzi';
-                $ip = $_SERVER['REMOTE_ADDR'];
-
-                if (strcmp($ip, "::1") == 0)
-                      $url = $google_url . "?secret=" . $secret . "&response=" . $recaptcha;
-                else
-                    $url = $google_url . "?secret=" . $secret . "&response=" . $recaptcha. "&remoteip=" . $ip;
-
-
-                $res = file_get_contents($url);
-                $res = json_decode($res, true);
-
-                $regError = false;
-                $errorStr = "";
-
-                //reCaptcha success check
-                if (!$res['success']) {
-                    $regError = true;
-                    $errorStr .= "*Bad Captcha<br>";
-                }
-
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-                {
-                    $regError = true;
-                    $errorStr .= "*Invalid Email<br>";
-                }
-
-                if (strcmp($pword, $confirmpass) != 0)
-                {
-                    $regError = true;
-                    $errorStr .= "*Passwords Do Not Equal!";
-                }
-
-                if ($regError)
-                {
-                    echo "<b>Registration Error</b><br>";
-                    echo $errorStr;
-                    echo "<br><br>";
-                    echo "<a href=\"" . $this->view->baseURL() . "/account\">Click Here to Try Again</a>";
-                    exit();
-                }
-
-                if ($pword == $confirmpass && !empty($fname) && !empty($lname) && !empty($email) && !empty($uname) && !empty($pword)) {
-                    $this->_DB->CreateAccount($fname, $lname, $email, $uname, $pword, $institution);
-                }
-            }
-        }
-
-        header("location: ../index");
-    }
-*/
     public function logoutAction() {
         session_destroy();
 
