@@ -1,3 +1,7 @@
+<!--//Coded By: Luis Silva, Nixon Mathew
+//Date Created: 04/19/2015
+//Date Approved: 04/25/2015
+//Approved By: Luis Silva-->
 <?php
 
 class StaffAccountMapper {

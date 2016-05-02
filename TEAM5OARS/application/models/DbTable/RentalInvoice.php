@@ -1,3 +1,7 @@
+<!--//Coded By: Kaisong Fan, Visak Varghese
+//Date Created: 04/20/2015
+//Date Approved: 04/25/2015
+//Approved By: Luis Silva-->
 <?php
 
 class Application_Model_DbTable_RentalInvoice extends Zend_Db_Table_Abstract
